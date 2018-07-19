@@ -4,6 +4,7 @@
   "keywords": ["token", "security"],
   "type": "symfony-bundle",
   "license": "proprietary",
+  "version": "0.1-dev",
   "authors": [
     { "name": "Evgeny Nefedkin",
       "email": "evgeny.nefedkin@umbrellait.com"
