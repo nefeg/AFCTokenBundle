@@ -1,5 +1,5 @@
 <?php
-namespace App\Lib;
+namespace Umbrella\AFCTokenBundle\Lib;
 
 /**
  * Interface JCDateTimeInterface

@@ -1,5 +1,5 @@
 <?php
-namespace App\Lib;
+namespace Umbrella\AFCTokenBundle\Lib;
 
 use DateTimeZone;
 
@@ -81,7 +81,7 @@ class JCDateTime extends \DateTime implements JCDateTimeInterface
 
 	/**
 	 * @param string $stringFormat
-	 * @return JCDateTimeInterface|\App\Lib\DateTime
+	 * @return JCDateTimeInterface|\Umbrella\AFCTokenBundle\Lib\DateTime
 	 */
 	public function setStringFormat(string $stringFormat) :JCDateTimeInterface{
 		

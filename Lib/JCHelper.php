@@ -1,5 +1,5 @@
 <?php
-namespace App\Lib;
+namespace Umbrella\AFCTokenBundle\Lib;
 
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class JCHelper
  *
- * @package App\Lib
+ * @package Umbrella\AFCTokenBundle\Lib
  */
 class JCHelper
 {
@@ -313,7 +313,7 @@ class JCHelper
 //	/**
 //	 * @param      $data
 //	 * @param bool $serializeNull
-//	 * @return \App\Lib\JCJSON
+//	 * @return \Umbrella\AFCTokenBundle\Lib\JCJSON
 //	 * @throws \Exception
 //	 */
 //	static public function serializeToJellyJSON($data, bool $serializeNull = true) :JCJSON{

@@ -12,7 +12,7 @@ namespace Umbrella\AFCTokenBundle\Utils;
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenHash;
 use Umbrella\AFCTokenBundle\Entity\Token;
 use Umbrella\AFCTokenBundle\TokenInterface;
-use App\Lib\JCEncrypter;
+use Umbrella\AFCTokenBundle\Lib\JCEncrypter;
 
 use Firebase\JWT\JWT;
 

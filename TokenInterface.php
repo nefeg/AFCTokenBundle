@@ -7,7 +7,7 @@
  */
 
 namespace Umbrella\AFCTokenBundle;
-use App\Lib\JCDateTime;
+use Umbrella\AFCTokenBundle\Lib\JCDateTime;
 
 
 /**
@@ -48,7 +48,7 @@ interface TokenInterface
 	public function getTtl(): int;
 
 	/**
-	 * @return \App\Lib\JCDateTime
+	 * @return \Umbrella\AFCTokenBundle\Lib\JCDateTime
 	 */
 	public function getAt(): JCDateTime;
 

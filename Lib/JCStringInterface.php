@@ -6,7 +6,7 @@
  * Time: 16:04
  */
 
-namespace App\Lib;
+namespace Umbrella\AFCTokenBundle\Lib;
 
 /**
  * Interface JellyStringInterface

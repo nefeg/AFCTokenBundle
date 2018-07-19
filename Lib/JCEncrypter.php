@@ -6,12 +6,12 @@
  * Time: 18:57
  */
 
-namespace App\Lib;
+namespace Umbrella\AFCTokenBundle\Lib;
 
 /**
  * Class JCEncrypter
  *
- * @package App\Lib
+ * @package Umbrella\AFCTokenBundle\Lib
  */
 class JCEncrypter
 {
