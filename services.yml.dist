@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false      # Automatically injects dependencies in your services.
+        autoconfigure: false # Automatically registers your services as commands, event subscribers, etc.
+        public: true         # this makes public all the services defined in this file
+
+
+    app.token.service:
+        class: Umbrella\AFCTokenBundle\Service\TokenService
+        arguments: []
