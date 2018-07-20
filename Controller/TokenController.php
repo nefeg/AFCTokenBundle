@@ -83,4 +83,24 @@ class TokenController extends Controller
 
 		return $NewToken;
 	}
+
+
+	/**
+	 * Return authorized token
+	 *
+	 * @param \Symfony\Component\HttpFoundation\Request $Request
+	 * @return \Umbrella\AFCTokenBundle\TokenInterface
+	 * @throws \Exception
+	 */
+	public function authorizeRequest(Request $Request) :TokenInterface{
+
+		// Try to extract token from request
+		$Token = $this->extractToken($Request);
+
+		// Check for extracted token
+		if (!$Token || !$Token->isAuthenticated())
+			throw new \Exception('Token not exist');
+
+		return $Token;
+	}
 }
