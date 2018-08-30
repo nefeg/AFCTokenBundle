@@ -10,6 +10,8 @@ namespace Umbrella\AFCTokenBundle\Controller;
 
 use Umbrella\AFCTokenBundle\Entity\RefreshToken;
 use Umbrella\AFCTokenBundle\Entity\TokenRequest;
+use Umbrella\AFCTokenBundle\TokenDeserializerInterface;
+use Umbrella\AFCTokenBundle\TokenServiceInterface;
 use Umbrella\AFCTokenBundle\Utils\JWTTokenSerializer;
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,8 +22,19 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package Umbrella\AFCTokenBundle\Controller
  */
-class TokenController extends Controller
+abstract class TokenController extends Controller
 {
+	/**
+	 * @return \Umbrella\AFCTokenBundle\TokenDeserializerInterface
+	 */
+	abstract protected function getDeserializer() :TokenDeserializerInterface;
+
+	/**
+	 * @return \Umbrella\AFCTokenBundle\TokenServiceInterface
+	 */
+	abstract protected function getTokenService() :TokenServiceInterface;
+
+
 	/**
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
@@ -34,9 +47,7 @@ class TokenController extends Controller
 			$Request->query->get("ttl")
 		);
 
-		/** @var \Umbrella\AFCTokenBundle\TokenServiceInterface $TokenService */
-		$TokenService = $this->get("app.token.service");
-		return $TokenService->create($TokenRequest);
+		return $this->getTokenService()->create($TokenRequest);
 	}
 
 
@@ -53,11 +64,9 @@ class TokenController extends Controller
 
 			$tokenString = str_replace('Bearer ', '', $tokenString);
 
-			$Token = JWTTokenSerializer::deserialize($tokenString);
+			$Token = $this->getDeserializer()->deserialize($tokenString);
 
-			/** @var \Umbrella\AFCTokenBundle\TokenServiceInterface $TokenService */
-			$TokenService = $this->get("app.token.service");
-			$TokenService->authorize($Token);
+			$this->getTokenService()->authorize($Token);
 		}
 
 		return $Token;
@@ -76,9 +85,7 @@ class TokenController extends Controller
 		if ($Token = $this->extractToken($Request)){
 			$RefreshToken = new RefreshToken($refresh);
 
-			/** @var \Umbrella\AFCTokenBundle\TokenServiceInterface $TokenService */
-			$TokenService = $this->get("app.token.service");
-			$NewToken = $TokenService->refresh($Token, $RefreshToken);
+			$NewToken = $this->getTokenService()->refresh($Token, $RefreshToken);
 		}
 
 		return $NewToken;

@@ -2,11 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: omni
- * Date: 30.05.2018
- * Time: 21:27
+ * Date: 30.08.2018
+ * Time: 15:29
  */
 
-namespace Umbrella\AFCTokenBundle\Service;
+namespace Utils;
+
 
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenCode;
 use Umbrella\AFCTokenBundle\Entity\Token;
@@ -14,14 +15,8 @@ use Umbrella\AFCTokenBundle\Entity\TokenRequest;
 use Umbrella\AFCTokenBundle\RefreshTokenInterface;
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Umbrella\AFCTokenBundle\TokenRequestInterface;
-use Umbrella\AFCTokenBundle\TokenServiceInterface;
 
-/**
- * Class StubTokenService
- *
- * @package Umbrella\AFCTokenBundle\Service
- */
-class TokenService implements TokenServiceInterface
+class TokenServiceLib
 {
 	/**
 	 * @param \Umbrella\AFCTokenBundle\TokenRequestInterface $TokenRequest
@@ -29,7 +24,7 @@ class TokenService implements TokenServiceInterface
 	 * @throws \Exception
 	 * @throw \Exception
 	 */
-	public function create(TokenRequestInterface $TokenRequest): TokenInterface {
+	static public function create(TokenRequestInterface $TokenRequest): TokenInterface {
 
 		$Token = new Token(
 			$TokenRequest->getResource(),
@@ -45,7 +40,7 @@ class TokenService implements TokenServiceInterface
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
 	 * @throw \Exception
 	 */
-	public function authorize(TokenInterface $Token): TokenInterface {
+	static public function authorize(TokenInterface $Token): TokenInterface {
 
 		$Token->authenticate();
 
@@ -62,13 +57,13 @@ class TokenService implements TokenServiceInterface
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
 	 * @throws \Exception
 	 */
-	public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface{
+	static public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface{
 
 		if ( !$Token->isValidRefreshToken($RefreshToken) ) {
 			throw new \Exception('Invalid refresh token');
 		}
 
-		return $this->create(
+		return static::create(
 			new TokenRequest($RefreshToken->getSource(), $Token->getResource(), $Token->getTtl())
 		);
 	}

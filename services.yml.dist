@@ -5,6 +5,6 @@ services:
         public: true         # this makes public all the services defined in this file
 
 
-    app.token.service:
+    umbrella.AFCT.service:
         class: Umbrella\AFCTokenBundle\Service\TokenService
         arguments: []

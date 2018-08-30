@@ -3,8 +3,8 @@
   "description": "Token service",
   "keywords": ["token", "security"],
   "type": "symfony-bundle",
-  "license": "proprietary",
-  "version": "0.1-dev",
+  "license": "MIT",
+  "version": "0.2-dev",
   "authors": [
     { "name": "Evgeny Nefedkin",
       "email": "evgeny.nefedkin@umbrellait.com"
@@ -30,11 +30,18 @@
     "symfony/monolog-bundle": "^3.2",
     "symfony/orm-pack": "^1.0",
     "symfony/proxy-manager-bridge": "^4.0",
-    "symfony/yaml": "^4.0"
+    "symfony/yaml": "^4.0",
+    "umbrella-evgeny-nefedkin/libjc": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "Umbrella\\AFCTokenBundle\\": ""
+      "Umbrella\\AFCTokenBundle\\": "src/"
+    }
+  },
+  "scripts": {
+    "auto-scripts": {
+      "cache:clear": "symfony-cmd",
+      "assets:install %PUBLIC_DIR%": "symfony-cmd"
     }
   }
 }

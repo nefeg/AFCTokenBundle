@@ -10,8 +10,8 @@ namespace Umbrella\AFCTokenBundle\Entity;
 
 use Umbrella\AFCTokenBundle\RefreshTokenInterface;
 use Umbrella\AFCTokenBundle\TokenInterface;
-use Umbrella\AFCTokenBundle\Lib\JCDateTime;
-use Umbrella\AFCTokenBundle\Lib\JCHelper;
+use Umbrella\JCLibPack\JCDateTime;
+use Umbrella\JCLibPack\JCHelper;
 
 /**
  * Class Token
@@ -37,7 +37,7 @@ class Token implements TokenInterface
 	 */
 	private $ttl;
 	/**
-	 * @var \Umbrella\AFCTokenBundle\Lib\JCDateTime
+	 * @var \Umbrella\JCLibPack\JCDateTime
 	 */
 	private $at;
 	/**
@@ -132,7 +132,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @return \Umbrella\AFCTokenBundle\Lib\JCDateTime
+	 * @return \Umbrella\JCLibPack\JCDateTime
 	 */
 	public function getAt(): JCDateTime {
 		return $this->at;
@@ -166,7 +166,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @param \Umbrella\AFCTokenBundle\Lib\JCDateTime $at
+	 * @param \Umbrella\JCLibPack\JCDateTime $at
 	 * @return Token
 	 */
 	private function _setAt(JCDateTime $at) :Token {
