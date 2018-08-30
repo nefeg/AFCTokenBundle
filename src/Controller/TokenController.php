@@ -12,7 +12,6 @@ use Umbrella\AFCTokenBundle\Entity\RefreshToken;
 use Umbrella\AFCTokenBundle\Entity\TokenRequest;
 use Umbrella\AFCTokenBundle\TokenDeserializerInterface;
 use Umbrella\AFCTokenBundle\TokenServiceInterface;
-use Umbrella\AFCTokenBundle\Utils\JWTTokenSerializer;
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
