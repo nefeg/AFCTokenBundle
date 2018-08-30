@@ -8,7 +8,6 @@
 
 namespace Umbrella\AFCTokenBundle\Service;
 
-
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Umbrella\AFCTokenBundle\TokenSerializerInterface;
 use Umbrella\AFCTokenBundle\Utils\JWTTokenSerializer;
@@ -27,13 +26,13 @@ class TokenSerializerService implements TokenSerializerInterface
 	/**
 	 * TokenSerializerService constructor.
 	 *
-	 * @param string $secret
-	 * @param string $privateKey
+	 * @param string                                             $secret
+	 * @param \Umbrella\AFCTokenBundle\Service\CryptKeyInterface $privateKey
 	 */
-	public function __construct(string $secret, string $privateKey){
+	public function __construct(string $secret, CryptKeyInterface $privateKey){
 
 		$this->secret       = $secret;
-		$this->privateKey   = $privateKey;
+		$this->privateKey   = (string) $privateKey;
 	}
 
 

@@ -31,13 +31,13 @@ class TokenDeserializerService implements TokenDeserializerInterface
 	/**
 	 * TokenDeserializerService constructor.
 	 *
-	 * @param string $secret
-	 * @param string $publicKey
+	 * @param string                                             $secret
+	 * @param \Umbrella\AFCTokenBundle\Service\CryptKeyInterface $publicKey
 	 */
-	public function __construct(string $secret, string $publicKey){
+	public function __construct(string $secret, CryptKeyInterface $publicKey){
 
 		$this->secret       = $secret;
-		$this->publicKey    = $publicKey;
+		$this->publicKey    = (string) $publicKey;
 	}
 
 	/**

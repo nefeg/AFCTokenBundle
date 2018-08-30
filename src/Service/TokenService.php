@@ -8,14 +8,11 @@
 
 namespace Umbrella\AFCTokenBundle\Service;
 
-use Umbrella\AFCTokenBundle\Entity\RefreshTokenCode;
-use Umbrella\AFCTokenBundle\Entity\Token;
-use Umbrella\AFCTokenBundle\Entity\TokenRequest;
 use Umbrella\AFCTokenBundle\RefreshTokenInterface;
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Umbrella\AFCTokenBundle\TokenRequestInterface;
 use Umbrella\AFCTokenBundle\TokenServiceInterface;
-use Utils\TokenServiceLib;
+use Umbrella\AFCTokenBundle\Utils\TokenServiceLib;
 
 /**
  * Class StubTokenService

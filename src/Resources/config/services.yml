@@ -1,7 +1,7 @@
 parameters:
     umbrella.afct.param.secret: "%env(AFCT_SECRET)%"
-    umbrella.afct.param.public: "%env(AFCT_PUBLIC)%"
-    umbrella.afct.param.private: "%env(AFCT_PRIVATE)%"
+    umbrella.afct.param.public_file: "%env(AFCT_PUBLIC_PATH)%"
+    umbrella.afct.param.private_file: "%env(AFCT_PRIVATE_PATH)%"
 
 
 services:
@@ -15,10 +15,24 @@ services:
         class: Umbrella\AFCTokenBundle\Service\TokenService
         arguments: []
 
+
+
+
+    umbrella.afct.key_public.file:
+        class: Umbrella\AFCTokenBundle\Service\CryptKey\FileKey
+        arguments: ["%umbrella.afct.param.public_file%"]
+
+    umbrella.afct.key_private.file:
+        class: Umbrella\AFCTokenBundle\Service\CryptKey\FileKey
+        arguments: ["%umbrella.afct.param.private_file%"]
+
+
+
+
     umbrella.afct.serializer:
         class: Umbrella\AFCTokenBundle\Service\TokenSerializerService
-        arguments: ["%umbrella.afct.param.secret%", "%umbrella.afct.param.private%"]
+        arguments: ["%umbrella.afct.param.secret%", "@umbrella.afct.key_private.file"]
 
     umbrella.afct.deserializer:
         class: Umbrella\AFCTokenBundle\Service\TokenDeserializerService
-        arguments: ["%umbrella.afct.param.secret%", "%umbrella.afct.param.public%"]
+        arguments: ["%umbrella.afct.param.secret%", "@umbrella.afct.key_public.file"]

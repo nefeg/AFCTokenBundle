@@ -6,7 +6,7 @@
  * Time: 15:29
  */
 
-namespace Utils;
+namespace Umbrella\AFCTokenBundle\Utils;
 
 
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenCode;
