@@ -12,7 +12,6 @@ namespace Umbrella\AFCTokenBundle\Utils;
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenHash;
 use Umbrella\AFCTokenBundle\Entity\Token;
 use Umbrella\AFCTokenBundle\TokenInterface;
-
 use Firebase\JWT\JWT;
 use Umbrella\JCLibPack\JCEncrypter;
 
@@ -25,6 +24,11 @@ class JWTTokenSerializer
 {
 	private const TYPE = 'HS512';
 
+	/**
+	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
+	 * @param string|NULL                             $privateKey
+	 * @return array
+	 */
 	static public function ArraySerialize(TokenInterface $Token, string $privateKey = null) :array{
 
 		return [
