@@ -18,9 +18,14 @@ abstract class AFCTokenException extends \Exception
 	const MESSAGE = 'Unexpected exception';
 
 	/**
-	 * @return string
+	 * AFCTokenException constructor.
+	 *
+	 * @param string          $message
+	 * @param int             $code
+	 * @param \Throwable|NULL $previous
 	 */
-	public function __toString() :string{
-		return static::MESSAGE;
+	public function __construct(string $message = "", int $code = 0, \Throwable $previous = NULL) {
+
+		parent::__construct( $message?:static::MESSAGE, $code, $previous);
 	}
 }
