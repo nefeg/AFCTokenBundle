@@ -8,8 +8,10 @@
 
 namespace Umbrella\AFCTokenBundle\Controller;
 
+use Controller\Exception\UnauthorizedException;
 use Umbrella\AFCTokenBundle\Entity\RefreshToken;
 use Umbrella\AFCTokenBundle\Entity\TokenRequest;
+use Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException;
 use Umbrella\AFCTokenBundle\TokenDeserializerInterface;
 use Umbrella\AFCTokenBundle\TokenServiceInterface;
 use Umbrella\AFCTokenBundle\TokenInterface;
@@ -37,7 +39,7 @@ abstract class TokenController extends Controller
 	/**
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	protected function createToken(Request $Request) :TokenInterface{
 		$TokenRequest = new TokenRequest(
@@ -53,7 +55,7 @@ abstract class TokenController extends Controller
 	/**
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface|null
-	 * @throws \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException
 	 */
 	protected function extractToken(Request $Request) :?TokenInterface{
 
@@ -75,38 +77,26 @@ abstract class TokenController extends Controller
 	 * @param string                                    $refresh
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface|null
-	 * @throws \Exception
+	 * @throws \Controller\Exception\UnauthorizedException
+	 * @throws \Umbrella\AFCTokenBundle\Exception\InvalidRefreshTokenException
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
-	public function refreshToken(string $refresh, Request $Request) :?TokenInterface{
+	public function refreshToken(string $refresh, Request $Request) :TokenInterface{
 
 		$NewToken = null;
 
-		if ($Token = $this->extractToken($Request)){
+		try{
+			$Token = $this->extractToken($Request);
+
+			if (!$Token) throw new UnauthorizedException();
+
 			$RefreshToken = new RefreshToken($refresh);
 
-			$NewToken = $this->getTokenService()->refresh($Token, $RefreshToken);
+			return $this->getTokenService()->refresh($Token, $RefreshToken);
+
+
+		}catch (TokenDeserializationFailException $Exception){
+			throw new UnauthorizedException("", 401, $Exception);
 		}
-
-		return $NewToken;
-	}
-
-
-	/**
-	 * Return authorized token
-	 *
-	 * @param \Symfony\Component\HttpFoundation\Request $Request
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Exception
-	 */
-	public function authorizeRequest(Request $Request) :TokenInterface{
-
-		// Try to extract token from request
-		$Token = $this->extractToken($Request);
-
-		// Check for extracted token
-		if (!$Token || !$Token->isAuthenticated())
-			throw new \Exception('Token not exist');
-
-		return $Token;
 	}
 }

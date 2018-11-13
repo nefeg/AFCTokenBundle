@@ -24,8 +24,7 @@ class TokenService implements TokenServiceInterface
 	/**
 	 * @param \Umbrella\AFCTokenBundle\TokenRequestInterface $TokenRequest
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Exception
-	 * @throw \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	public function create(TokenRequestInterface $TokenRequest): TokenInterface {
 
@@ -35,7 +34,6 @@ class TokenService implements TokenServiceInterface
 	/**
 	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throw \Exception
 	 */
 	public function authorize(TokenInterface $Token): TokenInterface {
 
@@ -50,7 +48,8 @@ class TokenService implements TokenServiceInterface
 	 * @param \Umbrella\AFCTokenBundle\TokenInterface        $Token
 	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @throws \Umbrella\AFCTokenBundle\Exception\InvalidRefreshTokenException
 	 */
 	public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface{
 

@@ -8,12 +8,17 @@
 
 namespace Umbrella\AFCTokenBundle\Utils;
 
-
+use Firebase\JWT\JWT;
+use Firebase\JWT\BeforeValidException;
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\SignatureInvalidException;
+use Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException;
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenHash;
 use Umbrella\AFCTokenBundle\Entity\Token;
+use Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException;
 use Umbrella\AFCTokenBundle\TokenInterface;
-use Firebase\JWT\JWT;
 use Umbrella\JCLibPack\JCEncrypter;
+use UnexpectedValueException;
 
 /**
  * Class JWTTokenSerializer
@@ -61,22 +66,35 @@ class JWTTokenSerializer
 	 * @param string $secret
 	 * @param string $publicKey
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException
 	 */
 	static public function deserialize(string $tokenString, string $secret, string $publicKey): TokenInterface {
 
-		$tokenData = JWT::decode($tokenString, $secret, [static::TYPE]);
+		try{
+			$tokenData = JWT::decode($tokenString, $secret, [static::TYPE]);
 
-		$decryptedData = json_decode(JCEncrypter::decrypt_RSA($tokenData->crypt, $publicKey));
+			$decryptedData = json_decode(JCEncrypter::decrypt_RSA($tokenData->crypt, $publicKey));
 
-		$Token = new Token(
-			$decryptedData->resource,
-			$decryptedData->ttl,
-			new RefreshTokenHash($tokenData->refresh)
-		);
+			$Token = new Token(
+				$decryptedData->resource,
+				$decryptedData->ttl,
+				new RefreshTokenHash($tokenData->refresh)
+			);
 
-//		$Token->setAt($decryptedData->at);
-		$Token->setSalt($tokenData->salt);
+//		    $Token->setAt($decryptedData->at);
+			$Token->setSalt($tokenData->salt);
+
+		}catch (
+			TokenConstructorFailException|
+			UnexpectedValueException|
+			SignatureInvalidException|
+			BeforeValidException|
+			ExpiredException
+		$Exception){
+			throw new TokenDeserializationFailException("", 0, $Exception);
+		}
+
+
 
 		return $Token;
 	}

@@ -15,14 +15,14 @@ use Umbrella\AFCTokenBundle\Entity\TokenRequest;
 use Umbrella\AFCTokenBundle\RefreshTokenInterface;
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Umbrella\AFCTokenBundle\TokenRequestInterface;
+use Umbrella\AFCTokenBundle\Exception\InvalidRefreshTokenException;
 
 class TokenServiceLib
 {
 	/**
 	 * @param \Umbrella\AFCTokenBundle\TokenRequestInterface $TokenRequest
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Exception
-	 * @throw \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	static public function create(TokenRequestInterface $TokenRequest): TokenInterface {
 
@@ -38,7 +38,6 @@ class TokenServiceLib
 	/**
 	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throw \Exception
 	 */
 	static public function authorize(TokenInterface $Token): TokenInterface {
 
@@ -55,12 +54,13 @@ class TokenServiceLib
 	 * @param \Umbrella\AFCTokenBundle\TokenInterface        $Token
 	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @throws \Umbrella\AFCTokenBundle\Exception\InvalidRefreshTokenException
 	 */
 	static public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface{
 
 		if ( !$Token->isValidRefreshToken($RefreshToken) ) {
-			throw new \Exception('Invalid refresh token');
+			throw new InvalidRefreshTokenException();
 		}
 
 		return static::create(

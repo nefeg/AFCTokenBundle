@@ -8,6 +8,8 @@
 
 namespace Umbrella\AFCTokenBundle\Entity;
 
+use Umbrella\AFCTokenBundle\Exception\ImmutableTokenDataException;
+use Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException;
 use Umbrella\AFCTokenBundle\RefreshTokenInterface;
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Umbrella\JCLibPack\JCDateTime;
@@ -48,35 +50,44 @@ class Token implements TokenInterface
 	 * @var \Umbrella\AFCTokenBundle\RefreshTokenInterface|null
 	 */
 	private $RefreshToken;
+	/**
+	 * @var string crypt-filler
+	 */
+	private $_filler;
 
 
 	/**
 	 * Token constructor.
 	 *
-	 * @param string                             $resource
-	 * @param int                                $ttl
+	 * @param string                                              $resource
+	 * @param int                                                 $ttl
 	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface|null $RefreshToken
-	 * @throws \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	public function __construct(string $resource, int $ttl, RefreshTokenInterface $RefreshToken = null){
-		$this->resource = $resource;
-		$this->ttl      = $ttl;
-		$this->at       = new JCDateTime();
-		$this->salt     = JCHelper::generateCryptCode();
-
+		$this->resource     = $resource;
+		$this->ttl          = $ttl;
+		$this->at           = new JCDateTime();
 		$this->RefreshToken = $RefreshToken;
+
+		try{
+			$this->salt         = JCHelper::generateCryptCode();
+			$this->_filler      = JCHelper::generateCryptCode(32);
+		}catch (\Exception $Exception){
+			throw new TokenConstructorFailException("",0, new \Exception("Crypt-string generation error."));
+		}
 	}
 
 	/**
 	 * @param $methodName
 	 * @param $args
 	 * @return \Umbrella\AFCTokenBundle\Entity\Token
-	 * @throws \Exception
+	 * @throws \Umbrella\AFCTokenBundle\Exception\ImmutableTokenDataException
 	 */
 	public function __call($methodName, $args) :Token{
 
 		if ($this->isAuthenticated){
-			throw new \Exception("It's not possible to change data of authenticated token.");
+			throw new ImmutableTokenDataException();
 		}
 
 		$methodName = '_' . $methodName;
@@ -102,7 +113,6 @@ class Token implements TokenInterface
 	/**
 	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return bool
-	 * @throws \Exception
 	 */
 	public function isValidRefreshToken(RefreshTokenInterface $RefreshToken): bool {
 
@@ -154,11 +164,11 @@ class Token implements TokenInterface
 
 	/**
 	 * @return array
-	 * @throws \Exception
 	 */
 	public function getEncryptedData(): array {
+
 		return [
-			'rnd'       => JCHelper::generateCryptCode(32),
+			'rnd'       => $this->_filler,
 			'resource'  => $this->getResource(),
 			'at'        => $this->getAt(),
 			'ttl'       => $this->getTtl()

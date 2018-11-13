@@ -8,6 +8,7 @@
 
 namespace Umbrella\AFCTokenBundle\Service\CryptKey;
 
+use Umbrella\AFCTokenBundle\Service\CryptKey\Exception\NoEncryptionKeyFileException;
 use Umbrella\AFCTokenBundle\Service\CryptKeyInterface;
 
 /**
@@ -26,12 +27,12 @@ class FileKey implements CryptKeyInterface
 	 * FileKey constructor.
 	 *
 	 * @param string $keyPath
-	 * @throws \Exception
+	 * @throws NoEncryptionKeyFileException
 	 */
 	public function __construct(string $keyPath){
 
 		if (!file_exists($keyPath))
-			throw new \Exception('Invalid key path: '. $keyPath);
+			throw new NoEncryptionKeyFileException("", 0, new \Exception('Invalid path: '. $keyPath));
 
 		$this->keyPath = realpath($keyPath);
 	}

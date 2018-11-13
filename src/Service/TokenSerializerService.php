@@ -12,6 +12,11 @@ use Umbrella\AFCTokenBundle\TokenInterface;
 use Umbrella\AFCTokenBundle\TokenSerializerInterface;
 use Umbrella\AFCTokenBundle\Utils\JWTTokenSerializer;
 
+/**
+ * Class TokenSerializerService
+ *
+ * @package Umbrella\AFCTokenBundle\Service
+ */
 class TokenSerializerService implements TokenSerializerInterface
 {
 	/**
