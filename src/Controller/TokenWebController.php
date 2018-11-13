@@ -8,9 +8,9 @@
 
 namespace Umbrella\AFCTokenBundle\Controller;
 
-use Controller\Exception\UnauthorizedException;
 use Symfony\Component\HttpFoundation\Request;
 use Umbrella\AFCTokenBundle\Controller\Exception\NoTokenException;
+use Umbrella\AFCTokenBundle\Controller\Exception\UnauthorizedException;
 use Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException;
 use Umbrella\AFCTokenBundle\TokenInterface;
 
@@ -27,7 +27,7 @@ abstract class TokenWebController extends TokenController
 	 *
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Controller\Exception\UnauthorizedException
+	 * @throws \Umbrella\AFCTokenBundle\Controller\Exception\UnauthorizedException
 	 */
 	public function authorizeRequest(Request $Request) :TokenInterface{
 

@@ -8,7 +8,7 @@
 
 namespace Umbrella\AFCTokenBundle\Controller;
 
-use Controller\Exception\UnauthorizedException;
+use Umbrella\AFCTokenBundle\Controller\Exception\UnauthorizedException;
 use Umbrella\AFCTokenBundle\Entity\RefreshToken;
 use Umbrella\AFCTokenBundle\Entity\TokenRequest;
 use Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException;
@@ -77,7 +77,7 @@ abstract class TokenController extends Controller
 	 * @param string                                    $refresh
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface|null
-	 * @throws \Controller\Exception\UnauthorizedException
+	 * @throws \Umbrella\AFCTokenBundle\Controller\Exception\UnauthorizedException
 	 * @throws \Umbrella\AFCTokenBundle\Exception\InvalidRefreshTokenException
 	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */

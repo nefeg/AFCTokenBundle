@@ -44,7 +44,7 @@ class RefreshToken implements RefreshTokenInterface
 //		var_dump("s1: $s1;\n s2: $s2;\n sum: $hash");
 //		var_dump('<<< /Token >>>');
 
-		return $hash;;
+		return $hash;
 	}
 
 	/**

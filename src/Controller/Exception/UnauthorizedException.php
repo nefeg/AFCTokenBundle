@@ -6,9 +6,7 @@
  * Time: 22:07
  */
 
-namespace Controller\Exception;
-
-use Umbrella\AFCTokenBundle\Controller\Exception\TokenControllerException;
+namespace Umbrella\AFCTokenBundle\Controller\Exception;
 
 /**
  * Class UnauthorizedException
