@@ -40,7 +40,7 @@ abstract class TokenWebController extends TokenController
 				throw new NoTokenException();
 
 		}catch (NoTokenException|TokenDeserializationFailException $Exception){
-			throw new UnauthorizedException("", 401, $Exception);
+			throw new UnauthorizedException($Exception->getMessage(), 401, $Exception);
 		}
 
 		return $Token;

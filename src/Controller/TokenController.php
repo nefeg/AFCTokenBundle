@@ -96,7 +96,7 @@ abstract class TokenController extends Controller
 
 
 		}catch (TokenDeserializationFailException $Exception){
-			throw new UnauthorizedException("", 401, $Exception);
+			throw new UnauthorizedException($Exception->getMessage(), 401, $Exception);
 		}
 	}
 }
