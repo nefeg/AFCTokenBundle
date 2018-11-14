@@ -4,7 +4,7 @@
   "keywords": ["token", "security"],
   "type": "symfony-bundle",
   "license": "MIT",
-  "version": "0.6.2",
+  "version": "1.0.0-RC1",
   "authors": [
     { "name": "Evgeny Nefedkin",
       "email": "evgeny.nefedkin@umbrellait.com"
