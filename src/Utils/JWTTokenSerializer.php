@@ -91,7 +91,7 @@ class JWTTokenSerializer
 			BeforeValidException|
 			ExpiredException
 		$Exception){
-			throw new TokenDeserializationFailException("", 0, $Exception);
+			throw new TokenDeserializationFailException($Exception->getMessage(), 0, $Exception);
 		}
 
 
