@@ -2,7 +2,7 @@
 
 namespace Umbrella\AFCTokenBundle;
 
-use Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException;
+use Umbrella\AFCTokenBundle\Exception\DeserializationFailException;
 
 /**
  * Interface TokenDeserializerInterface
@@ -14,7 +14,7 @@ interface TokenDeserializerInterface{
 	 * @param string $tokenString
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
 	 *
-	 * @throws TokenDeserializationFailException
+	 * @throws DeserializationFailException
 	 */
 	public function deserialize(string $tokenString): TokenInterface;
 }

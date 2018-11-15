@@ -12,10 +12,11 @@ namespace Umbrella\AFCTokenBundle\Utils;
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenCode;
 use Umbrella\AFCTokenBundle\Entity\Token;
 use Umbrella\AFCTokenBundle\Entity\TokenRequest;
+use Umbrella\AFCTokenBundle\Exception\ExpiredTokenException;
 use Umbrella\AFCTokenBundle\RefreshTokenInterface;
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Umbrella\AFCTokenBundle\TokenRequestInterface;
-use Umbrella\AFCTokenBundle\Exception\InvalidRefreshTokenException;
+use Umbrella\AFCTokenBundle\Exception\RefreshTokenInvalidException;
 
 class TokenServiceLib
 {
@@ -26,22 +27,24 @@ class TokenServiceLib
 	 */
 	static public function create(TokenRequestInterface $TokenRequest): TokenInterface {
 
-		$Token = new Token(
+		return new Token(
 			$TokenRequest->getResource(),
 			$TokenRequest->getTtl(),
 			new RefreshTokenCode($TokenRequest->getCode())
 		);
-
-		return $Token->authenticate();
 	}
 
 	/**
 	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
+	 * @throws \Umbrella\AFCTokenBundle\Exception\ExpiredTokenException
 	 */
 	static public function authorize(TokenInterface $Token): TokenInterface {
 
-		$Token->authenticate();
+		if ($Token->isExpired())
+			throw new ExpiredTokenException;
+
+		$Token->authorize();
 
 		return $Token;
 	}
@@ -54,17 +57,26 @@ class TokenServiceLib
 	 * @param \Umbrella\AFCTokenBundle\TokenInterface        $Token
 	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
+	 *
+	 * @throws \Umbrella\AFCTokenBundle\Exception\RefreshTokenInvalidException
 	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
-	 * @throws \Umbrella\AFCTokenBundle\Exception\InvalidRefreshTokenException
 	 */
 	static public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface{
 
 		if ( !$Token->isValidRefreshToken($RefreshToken) ) {
-			throw new InvalidRefreshTokenException();
+			throw new RefreshTokenInvalidException();
 		}
 
-		return static::create(
+		try{
+			static::authorize($Token);
+		}catch (ExpiredTokenException $ExpiredTokenException){
+			// to do nothing, because it's normal for refresh action
+		}
+
+		$NewToken = static::create(
 			new TokenRequest($RefreshToken->getSource(), $Token->getResource(), $Token->getTtl())
 		);
+
+		return $NewToken;
 	}
 }

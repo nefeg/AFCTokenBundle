@@ -43,7 +43,7 @@ class TokenDeserializerService implements TokenDeserializerInterface
 	/**
 	 * @param string $tokenString
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException
+	 * @throws \Umbrella\AFCTokenBundle\Exception\DeserializationFailException
 	 */
 	public function deserialize(string $tokenString): TokenInterface {
 		return JWTTokenSerializer::deserialize($tokenString, $this->secret, $this->publicKey);

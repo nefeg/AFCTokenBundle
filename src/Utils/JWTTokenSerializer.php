@@ -8,14 +8,14 @@
 
 namespace Umbrella\AFCTokenBundle\Utils;
 
-use Firebase\JWT\JWT;
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\ExpiredException;
+use Firebase\JWT\JWT;
 use Firebase\JWT\SignatureInvalidException;
 use Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException;
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenHash;
 use Umbrella\AFCTokenBundle\Entity\Token;
-use Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException;
+use Umbrella\AFCTokenBundle\Exception\DeserializationFailException;
 use Umbrella\AFCTokenBundle\TokenInterface;
 use Umbrella\JCLibPack\JCEncrypter;
 use UnexpectedValueException;
@@ -66,11 +66,12 @@ class JWTTokenSerializer
 	 * @param string $secret
 	 * @param string $publicKey
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException
+	 *
+	 * @throws \Umbrella\AFCTokenBundle\Exception\DeserializationFailException
 	 */
-	static public function deserialize(string $tokenString, string $secret, string $publicKey): TokenInterface {
-
-		try{
+	static public function deserialize(string $tokenString, string $secret, string $publicKey): TokenInterface
+	{
+		try {
 			$tokenData = JWT::decode($tokenString, $secret, [static::TYPE]);
 
 			$decryptedData = json_decode(JCEncrypter::decrypt_RSA($tokenData->crypt, $publicKey));
@@ -84,18 +85,18 @@ class JWTTokenSerializer
 //		    $Token->setAt($decryptedData->at);
 			$Token->setSalt($tokenData->salt);
 
+			return $Token;
+
+		}catch (ExpiredException $ExpiredException){
+			// ignore, this checking  is not what this function should to do, it should only deserialize the data
+
 		}catch (
 			TokenConstructorFailException|
 			UnexpectedValueException|
 			SignatureInvalidException|
-			BeforeValidException|
-			ExpiredException
+			BeforeValidException
 		$Exception){
-			throw new TokenDeserializationFailException($Exception->getMessage(), 0, $Exception);
+			throw new DeserializationFailException($Exception->getMessage(), 0, $Exception);
 		}
-
-
-
-		return $Token;
 	}
 }

@@ -14,18 +14,28 @@ use Umbrella\JCLibPack\JCDateTime;
 /**
  * Interface TokenInterface
  *
- * @package App\v1
+ * @package Umbrella\AFCTokenBundle
+ *
+ * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
+ * @throws \Umbrella\AFCTokenBundle\Exception\TokenImmutableDataException
  */
 interface TokenInterface
 {
 	/**
+	 * Mark token as authorized.
+	 *
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
 	 */
-	public function authenticate() :TokenInterface;
+	public function authorize() :TokenInterface;
 	/**
 	 * @return bool
 	 */
-	public function isAuthenticated() :bool;
+	public function isAuthorized() :bool;
+
+	/**
+	 * @return bool
+	 */
+	public function isExpired() :bool;
 
 	/**
 	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken

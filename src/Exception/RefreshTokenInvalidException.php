@@ -14,7 +14,7 @@ namespace Umbrella\AFCTokenBundle\Exception;
  *
  * @package Umbrella\AFCTokenBundle\Utils\Exception
  */
-class InvalidRefreshTokenException extends AFCTokenException
+class RefreshTokenInvalidException extends AFCTokenException
 {
 	const MESSAGE = 'invalid refresh-token.';
 }

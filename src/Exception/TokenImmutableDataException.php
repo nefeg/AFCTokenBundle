@@ -14,7 +14,7 @@ namespace Umbrella\AFCTokenBundle\Exception;
  *
  * @package Umbrella\AFCTokenBundle\Entity\Exception
  */
-class ImmutableTokenDataException extends AFCTokenException
+class TokenImmutableDataException extends AFCTokenException
 {
 	const MESSAGE = "It's not possible to change data of authenticated token.";
 }

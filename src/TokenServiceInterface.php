@@ -26,6 +26,8 @@ interface TokenServiceInterface
 	/**
 	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
+	 * @throws \Umbrella\AFCTokenBundle\Exception\AuthorizationFailedException
+	 * @throws \Umbrella\AFCTokenBundle\Exception\ExpiredTokenException
 	 */
 	public function authorize(TokenInterface $Token): TokenInterface;
 
@@ -38,7 +40,7 @@ interface TokenServiceInterface
 	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
 	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
-	 * @throws \Umbrella\AFCTokenBundle\Exception\InvalidRefreshTokenException
+	 * @throws \Umbrella\AFCTokenBundle\Exception\RefreshTokenInvalidException
 	 */
 	public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface;
 }

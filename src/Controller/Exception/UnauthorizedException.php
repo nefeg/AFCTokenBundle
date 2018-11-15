@@ -15,5 +15,5 @@ namespace Umbrella\AFCTokenBundle\Controller\Exception;
  */
 class UnauthorizedException extends TokenControllerException
 {
-	const MESSAGE = "Unauthorized token.";
+	const MESSAGE = "Unauthorized token";
 }

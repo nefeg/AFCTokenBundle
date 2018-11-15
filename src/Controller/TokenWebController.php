@@ -11,7 +11,9 @@ namespace Umbrella\AFCTokenBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Umbrella\AFCTokenBundle\Controller\Exception\NoTokenException;
 use Umbrella\AFCTokenBundle\Controller\Exception\UnauthorizedException;
-use Umbrella\AFCTokenBundle\Exception\TokenDeserializationFailException;
+use Umbrella\AFCTokenBundle\Exception\AuthorizationFailedException;
+use Umbrella\AFCTokenBundle\Exception\DeserializationFailException;
+use Umbrella\AFCTokenBundle\Exception\ExpiredTokenException;
 use Umbrella\AFCTokenBundle\TokenInterface;
 
 
@@ -35,11 +37,9 @@ abstract class TokenWebController extends TokenController
 			// Try to extract token from request
 			$Token = $this->extractToken($Request);
 
-			// Check for extracted token
-			if (!$Token || !$Token->isAuthenticated())
-				throw new NoTokenException();
+			$this->getTokenService()->authorize($Token);
 
-		}catch (NoTokenException|TokenDeserializationFailException $Exception){
+		}catch (NoTokenException|DeserializationFailException|ExpiredTokenException|AuthorizationFailedException $Exception){
 			throw new UnauthorizedException($Exception->getMessage(), 401, $Exception);
 		}
 

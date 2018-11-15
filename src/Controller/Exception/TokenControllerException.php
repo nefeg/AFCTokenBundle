@@ -8,14 +8,14 @@
 
 namespace Umbrella\AFCTokenBundle\Controller\Exception;
 
-use Umbrella\AFCTokenBundle\Exception\AFCTokenException;
+use Umbrella\AFCTokenBundle\Exception\AFCTokenReasonException;
 
 /**
  * Class TokenControllerException
  *
  * @package Controller\Exception
  */
-abstract class TokenControllerException extends AFCTokenException
+abstract class TokenControllerException extends AFCTokenReasonException
 {
 
 }

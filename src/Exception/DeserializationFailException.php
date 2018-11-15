@@ -3,17 +3,17 @@
  * Created by PhpStorm.
  * User: omni
  * Date: 13.11.2018
- * Time: 20:02
+ * Time: 20:34
  */
 
 namespace Umbrella\AFCTokenBundle\Exception;
 
 /**
- * Class TokenConstructorFailException
+ * Class TokenDeserializationFailException
  *
  * @package Umbrella\AFCTokenBundle\Exception
  */
-class TokenConstructorFailException extends AFCTokenReasonException
+class DeserializationFailException extends AFCTokenReasonException
 {
-	const MESSAGE = "Token constructor fail.";
+	const MESSAGE = "Token deserialization failed.";
 }

@@ -8,7 +8,7 @@
 
 namespace Umbrella\AFCTokenBundle\Entity;
 
-use Umbrella\AFCTokenBundle\Exception\ImmutableTokenDataException;
+use Umbrella\AFCTokenBundle\Exception\TokenImmutableDataException;
 use Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException;
 use Umbrella\AFCTokenBundle\RefreshTokenInterface;
 use Umbrella\AFCTokenBundle\TokenInterface;
@@ -29,7 +29,7 @@ class Token implements TokenInterface
 	/**
 	 * @var bool
 	 */
-	private $isAuthenticated = false;
+	private $isAuthorized = false;
 	/**
 	 * @var string
 	 */
@@ -70,11 +70,12 @@ class Token implements TokenInterface
 		$this->at           = new JCDateTime();
 		$this->RefreshToken = $RefreshToken;
 
-		try{
-			$this->salt         = JCHelper::generateCryptCode();
-			$this->_filler      = JCHelper::generateCryptCode(32);
+		try {
+			$this->salt     = JCHelper::generateCryptCode();
+			$this->_filler  = JCHelper::generateCryptCode(32);
+
 		}catch (\Exception $Exception){
-			throw new TokenConstructorFailException("",0, new \Exception("Crypt-string generation error."));
+			throw new TokenConstructorFailException("crypt-string generation error",0, $Exception);
 		}
 	}
 
@@ -82,12 +83,12 @@ class Token implements TokenInterface
 	 * @param $methodName
 	 * @param $args
 	 * @return \Umbrella\AFCTokenBundle\Entity\Token
-	 * @throws \Umbrella\AFCTokenBundle\Exception\ImmutableTokenDataException
+	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenImmutableDataException
 	 */
 	public function __call($methodName, $args) :Token{
 
-		if ($this->isAuthenticated){
-			throw new ImmutableTokenDataException();
+		if ($this->isAuthorized){
+			throw new TokenImmutableDataException();
 		}
 
 		$methodName = '_' . $methodName;
@@ -98,16 +99,23 @@ class Token implements TokenInterface
 	/**
 	 * @return bool
 	 */
-	public function isAuthenticated(): bool {
-		return $this->isAuthenticated;
+	public function isAuthorized(): bool {
+		return $this->isAuthorized;
 	}
 
 	/**
 	 * @return \Umbrella\AFCTokenBundle\TokenInterface
 	 */
-	public function authenticate() :TokenInterface{
-		$this->isAuthenticated = true;
+	public function authorize() :TokenInterface{
+		$this->isAuthorized = true;
 		return $this;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isExpired() :bool{
+		return time() - ( $this->getTtl() + $this->getAt()->getTimestamp() ) <= 0;
 	}
 
 	/**
