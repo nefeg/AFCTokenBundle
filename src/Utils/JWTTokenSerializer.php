@@ -8,9 +8,6 @@
 
 namespace Umbrella\AFCTokenBundle\Utils;
 
-use Firebase\JWT\BeforeValidException;
-use Firebase\JWT\ExpiredException;
-use Firebase\JWT\JWT;
 use Firebase\JWT\SignatureInvalidException;
 use Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException;
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenHash;
@@ -72,7 +69,7 @@ class JWTTokenSerializer
 	static public function deserialize(string $tokenString, string $secret, string $publicKey): TokenInterface
 	{
 		try {
-			$tokenData = JWT::decode($tokenString, $secret, [static::TYPE]);
+			$tokenData = JWT::decode($tokenString, $secret, [static::TYPE], false);
 
 			$decryptedData = json_decode(JCEncrypter::decrypt_RSA($tokenData->crypt, $publicKey));
 
@@ -87,14 +84,10 @@ class JWTTokenSerializer
 
 			return $Token;
 
-		}catch (ExpiredException $ExpiredException){
-			// ignore, this checking  is not what this function should to do, it should only deserialize the data
-
 		}catch (
 			TokenConstructorFailException|
 			UnexpectedValueException|
-			SignatureInvalidException|
-			BeforeValidException
+			SignatureInvalidException
 		$Exception){
 			throw new DeserializationFailException($Exception->getMessage(), 0, $Exception);
 		}
