@@ -115,7 +115,7 @@ class Token implements TokenInterface
 	 * @return bool
 	 */
 	public function isExpired() :bool{
-		return time() - ( $this->getTtl() + $this->getAt()->getTimestamp() ) <= 0;
+		return time() > ( $this->getTtl() + $this->getAt()->getTimestamp() );
 	}
 
 	/**

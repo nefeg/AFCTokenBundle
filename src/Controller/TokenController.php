@@ -12,7 +12,6 @@ use Umbrella\AFCTokenBundle\Controller\Exception\NoTokenException;
 use Umbrella\AFCTokenBundle\Controller\Exception\UnauthorizedException;
 use Umbrella\AFCTokenBundle\Entity\RefreshToken;
 use Umbrella\AFCTokenBundle\Entity\TokenRequest;
-use Umbrella\AFCTokenBundle\Exception\AuthorizationFailedException;
 use Umbrella\AFCTokenBundle\Exception\DeserializationFailException;
 use Umbrella\AFCTokenBundle\TokenDeserializerInterface;
 use Umbrella\AFCTokenBundle\TokenServiceInterface;

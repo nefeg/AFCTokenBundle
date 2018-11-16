@@ -8,12 +8,15 @@
 
 namespace Umbrella\AFCTokenBundle\Utils;
 
+use Firebase\JWT\BeforeValidException;
+use Firebase\JWT\ExpiredException;
 use Firebase\JWT\SignatureInvalidException;
 use Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException;
 use Umbrella\AFCTokenBundle\Entity\RefreshTokenHash;
 use Umbrella\AFCTokenBundle\Entity\Token;
 use Umbrella\AFCTokenBundle\Exception\DeserializationFailException;
 use Umbrella\AFCTokenBundle\TokenInterface;
+use Umbrella\JCLibPack\JCDateTime;
 use Umbrella\JCLibPack\JCEncrypter;
 use UnexpectedValueException;
 
@@ -34,7 +37,7 @@ class JWTTokenSerializer
 	static public function ArraySerialize(TokenInterface $Token, string $privateKey = null) :array{
 
 		return [
-			'exp'       => $Token->getAt()->modify('+'. $Token->getTtl() . ' seconds')->getTimestamp(),
+			'exp'       => (clone $Token->getAt())->modify('+'. $Token->getTtl() . ' seconds')->getTimestamp(),
 			'salt'      => $Token->getSalt(),
 			'shared'    => $Token->getSharedData(),
 			'crypt'     => JCEncrypter::encrypt_RSA(json_encode($Token->getEncryptedData()), $privateKey),
@@ -79,15 +82,18 @@ class JWTTokenSerializer
 				new RefreshTokenHash($tokenData->refresh)
 			);
 
-//		    $Token->setAt($decryptedData->at);
+			$Token->setAt(JCDateTime::import(
+				new \DateTime($decryptedData->at->date, new \DateTimeZone($decryptedData->at->timezone))
+			)
+			);
 			$Token->setSalt($tokenData->salt);
 
 			return $Token;
 
 		}catch (
-			TokenConstructorFailException|
-			UnexpectedValueException|
-			SignatureInvalidException
+		TokenConstructorFailException|
+		UnexpectedValueException|
+		SignatureInvalidException
 		$Exception){
 			throw new DeserializationFailException($Exception->getMessage(), 0, $Exception);
 		}
