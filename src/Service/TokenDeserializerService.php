@@ -1,21 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 24.08.2018
- * Time: 22:43
- */
 
-namespace Umbrella\AFCTokenBundle\Service;
+namespace AFCTokenBundle\Service;
 
-use Umbrella\AFCTokenBundle\TokenDeserializerInterface;
-use Umbrella\AFCTokenBundle\TokenInterface;
-use Umbrella\AFCTokenBundle\Utils\JWTTokenSerializer;
+use AFCTokenBundle\TokenDeserializerInterface;
+use AFCTokenBundle\TokenInterface;
+use AFCTokenBundle\Utils\JWTTokenSerializer;
 
 /**
  * Class TokenDeserializerService
  *
- * @package Umbrella\AFCTokenBundle\Service
+ * @package AFCTokenBundle\Service
  */
 class TokenDeserializerService implements TokenDeserializerInterface
 {
@@ -32,7 +26,7 @@ class TokenDeserializerService implements TokenDeserializerInterface
 	 * TokenDeserializerService constructor.
 	 *
 	 * @param string                                             $secret
-	 * @param \Umbrella\AFCTokenBundle\Service\CryptKeyInterface $publicKey
+	 * @param \AFCTokenBundle\Service\CryptKeyInterface $publicKey
 	 */
 	public function __construct(string $secret, CryptKeyInterface $publicKey){
 
@@ -42,8 +36,8 @@ class TokenDeserializerService implements TokenDeserializerInterface
 
 	/**
 	 * @param string $tokenString
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Umbrella\AFCTokenBundle\Exception\DeserializationFailException
+	 * @return \AFCTokenBundle\TokenInterface
+	 * @throws \AFCTokenBundle\Exception\DeserializationFailException
 	 */
 	public function deserialize(string $tokenString): TokenInterface {
 		return JWTTokenSerializer::deserialize($tokenString, $this->secret, $this->publicKey);

@@ -83,14 +83,14 @@ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 	class MyController extends TokenController
 	{
 		/**
-		 * @return \Umbrella\AFCTokenBundle\TokenDeserializerInterface
+		 * @return \AFCTokenBundle\TokenDeserializerInterface
 		 */
 		protected function getDeserializer(): TokenDeserializerInterface {
 			return $this->get('umbrella.afct.deserializer');
 		}
 	
 		/**
-		 * @return \Umbrella\AFCTokenBundle\TokenServiceInterface
+		 * @return \AFCTokenBundle\TokenServiceInterface
 		 */
 		protected function getTokenService(): TokenServiceInterface {
 			return $this->get('umbrella.afct.service');

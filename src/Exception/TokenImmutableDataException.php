@@ -1,18 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 13.11.2018
- * Time: 18:47
- */
 
-namespace Umbrella\AFCTokenBundle\Exception;
-
+namespace AFCTokenBundle\Exception;
 
 /**
  * Class ImmutableTokenDataException
  *
- * @package Umbrella\AFCTokenBundle\Entity\Exception
+ * @package AFCTokenBundle\Entity\Exception
  */
 class TokenImmutableDataException extends AFCTokenException
 {

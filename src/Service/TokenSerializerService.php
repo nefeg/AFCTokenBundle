@@ -1,21 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 24.08.2018
- * Time: 22:35
- */
 
-namespace Umbrella\AFCTokenBundle\Service;
+namespace AFCTokenBundle\Service;
 
-use Umbrella\AFCTokenBundle\TokenInterface;
-use Umbrella\AFCTokenBundle\TokenSerializerInterface;
-use Umbrella\AFCTokenBundle\Utils\JWTTokenSerializer;
+use AFCTokenBundle\TokenInterface;
+use AFCTokenBundle\TokenSerializerInterface;
+use AFCTokenBundle\Utils\JWTTokenSerializer;
 
 /**
  * Class TokenSerializerService
  *
- * @package Umbrella\AFCTokenBundle\Service
+ * @package AFCTokenBundle\Service
  */
 class TokenSerializerService implements TokenSerializerInterface
 {
@@ -32,7 +26,7 @@ class TokenSerializerService implements TokenSerializerInterface
 	 * TokenSerializerService constructor.
 	 *
 	 * @param string                                             $secret
-	 * @param \Umbrella\AFCTokenBundle\Service\CryptKeyInterface $privateKey
+	 * @param \AFCTokenBundle\Service\CryptKeyInterface $privateKey
 	 */
 	public function __construct(string $secret, CryptKeyInterface $privateKey){
 
@@ -42,7 +36,7 @@ class TokenSerializerService implements TokenSerializerInterface
 
 
 	/**
-	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
+	 * @param \AFCTokenBundle\TokenInterface $Token
 	 * @return string
 	 */
 	public function serialize(TokenInterface $Token): string {

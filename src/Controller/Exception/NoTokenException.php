@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 13.11.2018
- * Time: 18:05
- */
 
-namespace Umbrella\AFCTokenBundle\Controller\Exception;
+namespace AFCTokenBundle\Controller\Exception;
 
 /**
  * Class NoTokenException

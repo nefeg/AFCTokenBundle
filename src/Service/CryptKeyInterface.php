@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 30.08.2018
- * Time: 20:16
- */
 
-namespace Umbrella\AFCTokenBundle\Service;
+namespace AFCTokenBundle\Service;
 
-
-use Umbrella\JCLibPack\JCStringInterface;
+use JCLibPack\JCStringInterface;
 
 interface CryptKeyInterface extends JCStringInterface
 {

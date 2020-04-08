@@ -1,30 +1,24 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 30.05.2018
- * Time: 21:27
- */
 
-namespace Umbrella\AFCTokenBundle\Service;
+namespace AFCTokenBundle\Service;
 
-use Umbrella\AFCTokenBundle\RefreshTokenInterface;
-use Umbrella\AFCTokenBundle\TokenInterface;
-use Umbrella\AFCTokenBundle\TokenRequestInterface;
-use Umbrella\AFCTokenBundle\TokenServiceInterface;
-use Umbrella\AFCTokenBundle\Utils\TokenServiceLib;
+use AFCTokenBundle\RefreshTokenInterface;
+use AFCTokenBundle\TokenInterface;
+use AFCTokenBundle\TokenRequestInterface;
+use AFCTokenBundle\TokenServiceInterface;
+use AFCTokenBundle\Utils\TokenServiceLib;
 
 /**
  * Class StubTokenService
  *
- * @package Umbrella\AFCTokenBundle\Service
+ * @package AFCTokenBundle\Service
  */
 class TokenService implements TokenServiceInterface
 {
 	/**
-	 * @param \Umbrella\AFCTokenBundle\TokenRequestInterface $TokenRequest
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @param \AFCTokenBundle\TokenRequestInterface $TokenRequest
+	 * @return \AFCTokenBundle\TokenInterface
+	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	public function create(TokenRequestInterface $TokenRequest): TokenInterface {
 
@@ -32,9 +26,9 @@ class TokenService implements TokenServiceInterface
 	}
 
 	/**
-	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Umbrella\AFCTokenBundle\Exception\ExpiredTokenException
+	 * @param \AFCTokenBundle\TokenInterface $Token
+	 * @return \AFCTokenBundle\TokenInterface
+	 * @throws \AFCTokenBundle\Exception\ExpiredTokenException
 	 */
 	public function authorize(TokenInterface $Token): TokenInterface {
 
@@ -46,11 +40,11 @@ class TokenService implements TokenServiceInterface
 	 *
 	 * $rhash = hash($RefreshToken + resource + at)
 	 *
-	 * @param \Umbrella\AFCTokenBundle\TokenInterface        $Token
-	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Umbrella\AFCTokenBundle\Exception\RefreshTokenInvalidException
-	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @param \AFCTokenBundle\TokenInterface        $Token
+	 * @param \AFCTokenBundle\RefreshTokenInterface $RefreshToken
+	 * @return \AFCTokenBundle\TokenInterface
+	 * @throws \AFCTokenBundle\Exception\RefreshTokenInvalidException
+	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface{
 

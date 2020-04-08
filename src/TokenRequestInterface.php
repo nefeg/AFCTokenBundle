@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 19.06.2018
- * Time: 23:02
- */
 
-namespace Umbrella\AFCTokenBundle;
+namespace AFCTokenBundle;
 
 /**
  * Interface TokenRequestInterface

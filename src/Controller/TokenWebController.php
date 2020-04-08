@@ -1,26 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 13.11.2018
- * Time: 21:49
- */
 
-namespace Umbrella\AFCTokenBundle\Controller;
+namespace AFCTokenBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Umbrella\AFCTokenBundle\Controller\Exception\NoTokenException;
-use Umbrella\AFCTokenBundle\Controller\Exception\UnauthorizedException;
-use Umbrella\AFCTokenBundle\Exception\AuthorizationFailedException;
-use Umbrella\AFCTokenBundle\Exception\DeserializationFailException;
-use Umbrella\AFCTokenBundle\Exception\ExpiredTokenException;
-use Umbrella\AFCTokenBundle\TokenInterface;
-
+use AFCTokenBundle\Controller\Exception\NoTokenException;
+use AFCTokenBundle\Controller\Exception\UnauthorizedException;
+use AFCTokenBundle\Exception\AuthorizationFailedException;
+use AFCTokenBundle\Exception\DeserializationFailException;
+use AFCTokenBundle\Exception\ExpiredTokenException;
+use AFCTokenBundle\TokenInterface;
 
 /**
  * Class TokenWebController
  *
- * @package Umbrella\AFCTokenBundle\Controller
+ * @package AFCTokenBundle\Controller
  */
 abstract class TokenWebController extends TokenController
 {
@@ -28,8 +21,8 @@ abstract class TokenWebController extends TokenController
 	 * Return authorized token
 	 *
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
-	 * @throws \Umbrella\AFCTokenBundle\Controller\Exception\UnauthorizedException
+	 * @return \AFCTokenBundle\TokenInterface
+	 * @throws \AFCTokenBundle\Controller\Exception\UnauthorizedException
 	 */
 	public function authorizeRequest(Request $Request) :TokenInterface{
 

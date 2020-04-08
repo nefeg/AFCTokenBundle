@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 22.06.2018
- * Time: 1:42
- */
 
-namespace Umbrella\AFCTokenBundle;
+namespace AFCTokenBundle;
 
 /**
  * Interface RefreshTokenInterface
@@ -16,7 +10,7 @@ namespace Umbrella\AFCTokenBundle;
 interface RefreshTokenInterface
 {
 	/**
-	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
+	 * @param \AFCTokenBundle\TokenInterface $Token
 	 * @return string
 	 */
 	public function generateHash(TokenInterface $Token) :string;

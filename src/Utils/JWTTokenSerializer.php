@@ -1,36 +1,30 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 20.06.2018
- * Time: 15:48
- */
 
-namespace Umbrella\AFCTokenBundle\Utils;
+namespace AFCTokenBundle\Utils;
 
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\SignatureInvalidException;
-use Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException;
-use Umbrella\AFCTokenBundle\Entity\RefreshTokenHash;
-use Umbrella\AFCTokenBundle\Entity\Token;
-use Umbrella\AFCTokenBundle\Exception\DeserializationFailException;
-use Umbrella\AFCTokenBundle\TokenInterface;
-use Umbrella\JCLibPack\JCDateTime;
-use Umbrella\JCLibPack\JCEncrypter;
+use AFCTokenBundle\Exception\TokenConstructorFailException;
+use AFCTokenBundle\Entity\RefreshTokenHash;
+use AFCTokenBundle\Entity\Token;
+use AFCTokenBundle\Exception\DeserializationFailException;
+use AFCTokenBundle\TokenInterface;
+use JCLibPack\JCDateTime;
+use JCLibPack\JCEncrypter;
 use UnexpectedValueException;
 
 /**
  * Class JWTTokenSerializer
  *
- * @package Umbrella\AFCTokenBundle\Service
+ * @package AFCTokenBundle\Service
  */
 class JWTTokenSerializer
 {
 	private const TYPE = 'HS512';
 
 	/**
-	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
+	 * @param \AFCTokenBundle\TokenInterface $Token
 	 * @param string|NULL                             $privateKey
 	 * @return array
 	 */
@@ -47,7 +41,7 @@ class JWTTokenSerializer
 
 	/**
 	 * !Key must be in .pem format
-	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
+	 * @param \AFCTokenBundle\TokenInterface $Token
 	 * @param string                             $secret
 	 * @param string                             $privateKey
 	 * @return string
@@ -65,9 +59,9 @@ class JWTTokenSerializer
 	 * @param string $tokenString
 	 * @param string $secret
 	 * @param string $publicKey
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
+	 * @return \AFCTokenBundle\TokenInterface
 	 *
-	 * @throws \Umbrella\AFCTokenBundle\Exception\DeserializationFailException
+	 * @throws \AFCTokenBundle\Exception\DeserializationFailException
 	 */
 	static public function deserialize(string $tokenString, string $secret, string $publicKey): TokenInterface
 	{

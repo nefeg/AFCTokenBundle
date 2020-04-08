@@ -1,19 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 26.06.2018
- * Time: 2:33
- */
 
-namespace Umbrella\AFCTokenBundle\Entity;
+namespace AFCTokenBundle\Entity;
 
-use Umbrella\AFCTokenBundle\Exception\TokenImmutableDataException;
-use Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException;
-use Umbrella\AFCTokenBundle\RefreshTokenInterface;
-use Umbrella\AFCTokenBundle\TokenInterface;
-use Umbrella\JCLibPack\JCDateTime;
-use Umbrella\JCLibPack\JCHelper;
+use AFCTokenBundle\Exception\TokenImmutableDataException;
+use AFCTokenBundle\Exception\TokenConstructorFailException;
+use AFCTokenBundle\RefreshTokenInterface;
+use AFCTokenBundle\TokenInterface;
+use JCLibPack\JCDateTime;
+use JCLibPack\JCHelper;
 
 /**
  * Class Token
@@ -39,7 +33,7 @@ class Token implements TokenInterface
 	 */
 	private $ttl;
 	/**
-	 * @var \Umbrella\JCLibPack\JCDateTime
+	 * @var \JCLibPack\JCDateTime
 	 */
 	private $at;
 	/**
@@ -47,7 +41,7 @@ class Token implements TokenInterface
 	 */
 	private $salt;
 	/**
-	 * @var \Umbrella\AFCTokenBundle\RefreshTokenInterface|null
+	 * @var \AFCTokenBundle\RefreshTokenInterface|null
 	 */
 	private $RefreshToken;
 	/**
@@ -61,8 +55,8 @@ class Token implements TokenInterface
 	 *
 	 * @param string                                              $resource
 	 * @param int                                                 $ttl
-	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface|null $RefreshToken
-	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @param \AFCTokenBundle\RefreshTokenInterface|null $RefreshToken
+	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	public function __construct(string $resource, int $ttl, RefreshTokenInterface $RefreshToken = null){
 		$this->resource     = $resource;
@@ -82,8 +76,8 @@ class Token implements TokenInterface
 	/**
 	 * @param $methodName
 	 * @param $args
-	 * @return \Umbrella\AFCTokenBundle\Entity\Token
-	 * @throws \Umbrella\AFCTokenBundle\Exception\TokenImmutableDataException
+	 * @return \AFCTokenBundle\Entity\Token
+	 * @throws \AFCTokenBundle\Exception\TokenImmutableDataException
 	 */
 	public function __call($methodName, $args) :Token{
 
@@ -104,7 +98,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
+	 * @return \AFCTokenBundle\TokenInterface
 	 */
 	public function authorize() :TokenInterface{
 		$this->isAuthorized = true;
@@ -119,7 +113,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken
+	 * @param \AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return bool
 	 */
 	public function isValidRefreshToken(RefreshTokenInterface $RefreshToken): bool {
@@ -150,7 +144,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @return \Umbrella\JCLibPack\JCDateTime
+	 * @return \JCLibPack\JCDateTime
 	 */
 	public function getAt(): JCDateTime {
 		return $this->at;
@@ -184,7 +178,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @param \Umbrella\JCLibPack\JCDateTime $at
+	 * @param \JCLibPack\JCDateTime $at
 	 * @return Token
 	 */
 	private function _setAt(JCDateTime $at) :Token {

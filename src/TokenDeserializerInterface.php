@@ -1,18 +1,18 @@
 <?php
 
-namespace Umbrella\AFCTokenBundle;
+namespace AFCTokenBundle;
 
-use Umbrella\AFCTokenBundle\Exception\DeserializationFailException;
+use AFCTokenBundle\Exception\DeserializationFailException;
 
 /**
  * Interface TokenDeserializerInterface
  *
- * @package Umbrella\AFCTokenBundle
+ * @package AFCTokenBundle
  */
 interface TokenDeserializerInterface{
 	/**
 	 * @param string $tokenString
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
+	 * @return \AFCTokenBundle\TokenInterface
 	 *
 	 * @throws DeserializationFailException
 	 */

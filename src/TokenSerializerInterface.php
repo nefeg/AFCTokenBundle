@@ -1,16 +1,16 @@
 <?php
 
-namespace Umbrella\AFCTokenBundle;
+namespace AFCTokenBundle;
 
 /**
  * Interface TokenSerializerInterface
  *
- * @package Umbrella\AFCTokenBundle
+ * @package AFCTokenBundle
  */
 interface TokenSerializerInterface
 {
 	/**
-	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
+	 * @param \AFCTokenBundle\TokenInterface $Token
 	 * @return string
 	 */
 	public function serialize(TokenInterface $Token): string;

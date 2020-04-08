@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 30.08.2018
- * Time: 20:19
- */
 
-namespace Umbrella\AFCTokenBundle\Service\CryptKey;
+namespace AFCTokenBundle\Service\CryptKey;
 
-use Umbrella\AFCTokenBundle\Service\CryptKey\Exception\NoEncryptionKeyFileException;
-use Umbrella\AFCTokenBundle\Service\CryptKeyInterface;
+use AFCTokenBundle\Service\CryptKey\Exception\NoEncryptionKeyFileException;
+use AFCTokenBundle\Service\CryptKeyInterface;
 
 /**
  * Class FileKey

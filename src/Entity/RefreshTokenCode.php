@@ -1,16 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 26.06.2018
- * Time: 23:21
- */
 
-namespace Umbrella\AFCTokenBundle\Entity;
+namespace AFCTokenBundle\Entity;
 
-use Umbrella\AFCTokenBundle\RefreshTokenInterface;
-use Umbrella\AFCTokenBundle\TokenInterface;
-
+use AFCTokenBundle\RefreshTokenInterface;
+use AFCTokenBundle\TokenInterface;
 
 /**
  * Class RefreshTokenCode
@@ -34,7 +27,7 @@ class RefreshTokenCode implements RefreshTokenInterface
 	}
 
 	/**
-	 * @param \Umbrella\AFCTokenBundle\TokenInterface $Token
+	 * @param \AFCTokenBundle\TokenInterface $Token
 	 * @return string
 	 */
 	public function generateHash(TokenInterface $Token): string {

@@ -1,30 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 25.06.2018
- * Time: 20:01
- */
 
-namespace Umbrella\AFCTokenBundle;
+namespace AFCTokenBundle;
 
-use Umbrella\JCLibPack\JCDateTime;
-
+use JCLibPack\JCDateTime;
 
 /**
  * Interface TokenInterface
  *
- * @package Umbrella\AFCTokenBundle
+ * @package AFCTokenBundle
  *
- * @throws \Umbrella\AFCTokenBundle\Exception\TokenConstructorFailException
- * @throws \Umbrella\AFCTokenBundle\Exception\TokenImmutableDataException
+ * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
+ * @throws \AFCTokenBundle\Exception\TokenImmutableDataException
  */
 interface TokenInterface
 {
 	/**
 	 * Mark token as authorized.
 	 *
-	 * @return \Umbrella\AFCTokenBundle\TokenInterface
+	 * @return \AFCTokenBundle\TokenInterface
 	 */
 	public function authorize() :TokenInterface;
 	/**
@@ -38,7 +31,7 @@ interface TokenInterface
 	public function isExpired() :bool;
 
 	/**
-	 * @param \Umbrella\AFCTokenBundle\RefreshTokenInterface $RefreshToken
+	 * @param \AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return bool
 	 */
 	public function isValidRefreshToken(RefreshTokenInterface $RefreshToken) :bool;
@@ -59,7 +52,7 @@ interface TokenInterface
 	public function getTtl(): int;
 
 	/**
-	 * @return \Umbrella\JCLibPack\JCDateTime
+	 * @return \JCLibPack\JCDateTime
 	 */
 	public function getAt(): JCDateTime;
 

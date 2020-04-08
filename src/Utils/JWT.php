@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 16.11.2018
- * Time: 12:09
- */
 
-namespace Umbrella\AFCTokenBundle\Utils;
+namespace AFCTokenBundle\Utils;
 
 use DomainException;
 use Firebase\JWT\BeforeValidException;
@@ -18,7 +12,7 @@ use \UnexpectedValueException;
 /**
  * Class JWT
  *
- * @package Umbrella\AFCTokenBundle\Utils
+ * @package AFCTokenBundle\Utils
  */
 class JWT extends \Firebase\JWT\JWT
 {

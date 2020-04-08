@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 13.11.2018
- * Time: 18:10
- */
 
-namespace Umbrella\AFCTokenBundle\Exception;
+namespace AFCTokenBundle\Exception;
 
 /**
  * Class AFCTokenException
  *
- * @package Umbrella\AFCTokenBundle
+ * @package AFCTokenBundle
  */
 abstract class AFCTokenException extends \Exception
 {

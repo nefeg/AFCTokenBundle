@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omni
- * Date: 13.11.2018
- * Time: 20:34
- */
 
-namespace Umbrella\AFCTokenBundle\Exception;
+namespace AFCTokenBundle\Exception;
 
 /**
  * Class TokenDeserializationFailException
  *
- * @package Umbrella\AFCTokenBundle\Exception
+ * @package AFCTokenBundle\Exception
  */
 class DeserializationFailException extends AFCTokenReasonException
 {
