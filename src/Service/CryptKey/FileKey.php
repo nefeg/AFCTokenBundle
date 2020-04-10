@@ -1,9 +1,9 @@
 <?php
 
-namespace AFCTokenBundle\Service\CryptKey;
+namespace Aimchat\AFCTokenBundle\Service\CryptKey;
 
-use AFCTokenBundle\Service\CryptKey\Exception\NoEncryptionKeyFileException;
-use AFCTokenBundle\Service\CryptKeyInterface;
+use Aimchat\AFCTokenBundle\Service\CryptKey\Exception\NoEncryptionKeyFileException;
+use Aimchat\AFCTokenBundle\Service\CryptKeyInterface;
 
 /**
  * Class FileKey

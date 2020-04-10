@@ -1,8 +1,8 @@
 <?php
 
-namespace AFCTokenBundle\Controller\Exception;
+namespace Aimchat\AFCTokenBundle\Controller\Exception;
 
-use AFCTokenBundle\Exception\AFCTokenReasonException;
+use Aimchat\AFCTokenBundle\Exception\AFCTokenReasonException;
 
 /**
  * Class TokenControllerException

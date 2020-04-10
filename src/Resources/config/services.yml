@@ -1,7 +1,7 @@
 parameters:
-    afct.param.secret: "%env(AFCT_SECRET)%"
-    afct.param.public_file: "%env(AFCT_PUBLIC_PATH)%"
-    afct.param.private_file: "%env(AFCT_PRIVATE_PATH)%"
+    aimchat.afct.param.secret: "%env(AFCT_SECRET)%"
+    aimchat.afct.param.public_file: "%env(AFCT_PUBLIC_PATH)%"
+    aimchat.afct.param.private_file: "%env(AFCT_PRIVATE_PATH)%"
 
 
 services:
@@ -11,28 +11,28 @@ services:
         public: true         # this makes public all the services defined in this file
 
 
-    afct.service:
-        class: AFCTokenBundle\Service\TokenService
+    aimchat.afct.service:
+        class: Aimchat\AFCTokenBundle\Service\TokenService
         arguments: []
 
 
 
 
-    afct.key_public.file:
-        class: AFCTokenBundle\Service\CryptKey\FileKey
-        arguments: ["%afct.param.public_file%"]
+    aimchat.afct.key_public.file:
+        class: Aimchat\AFCTokenBundle\Service\CryptKey\FileKey
+        arguments: ["%aimchat.afct.param.public_file%"]
 
-    afct.key_private.file:
-        class: AFCTokenBundle\Service\CryptKey\FileKey
-        arguments: ["%afct.param.private_file%"]
-
-
+    aimchat.afct.key_private.file:
+        class: Aimchat\AFCTokenBundle\Service\CryptKey\FileKey
+        arguments: ["%aimchat.afct.param.private_file%"]
 
 
-    afct.serializer:
-        class: AFCTokenBundle\Service\TokenSerializerService
-        arguments: ["%afct.param.secret%", "@afct.key_private.file"]
 
-    afct.deserializer:
-        class: AFCTokenBundle\Service\TokenDeserializerService
-        arguments: ["%afct.param.secret%", "@afct.key_public.file"]
+
+    aimchat.afct.serializer:
+        class: Aimchat\AFCTokenBundle\Service\TokenSerializerService
+        arguments: ["%aimchat.afct.param.secret%", "@aimchat.afct.key_private.file"]
+
+    aimchat.afct.deserializer:
+        class: Aimchat\AFCTokenBundle\Service\TokenDeserializerService
+        arguments: ["%aimchat.afct.param.secret%", "@aimchat.afct.key_public.file"]

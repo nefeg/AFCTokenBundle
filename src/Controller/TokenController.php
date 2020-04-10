@@ -1,40 +1,40 @@
 <?php
 
-namespace AFCTokenBundle\Controller;
+namespace Aimchat\AFCTokenBundle\Controller;
 
-use AFCTokenBundle\Controller\Exception\NoTokenException;
-use AFCTokenBundle\Controller\Exception\UnauthorizedException;
-use AFCTokenBundle\Entity\RefreshToken;
-use AFCTokenBundle\Entity\TokenRequest;
-use AFCTokenBundle\Exception\DeserializationFailException;
-use AFCTokenBundle\TokenDeserializerInterface;
-use AFCTokenBundle\TokenServiceInterface;
-use AFCTokenBundle\TokenInterface;
+use Aimchat\AFCTokenBundle\Controller\Exception\NoTokenException;
+use Aimchat\AFCTokenBundle\Controller\Exception\UnauthorizedException;
+use Aimchat\AFCTokenBundle\Entity\RefreshToken;
+use Aimchat\AFCTokenBundle\Entity\TokenRequest;
+use Aimchat\AFCTokenBundle\Exception\DeserializationFailException;
+use Aimchat\AFCTokenBundle\TokenDeserializerInterface;
+use Aimchat\AFCTokenBundle\TokenServiceInterface;
+use Aimchat\AFCTokenBundle\TokenInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class TokenController
  *
- * @package AFCTokenBundle\Controller
+ * @package Aimchat\AFCTokenBundle\Controller
  */
 abstract class TokenController extends Controller
 {
 	/**
-	 * @return \AFCTokenBundle\TokenDeserializerInterface
+	 * @return \Aimchat\AFCTokenBundle\TokenDeserializerInterface
 	 */
 	abstract protected function getDeserializer() :TokenDeserializerInterface;
 
 	/**
-	 * @return \AFCTokenBundle\TokenServiceInterface
+	 * @return \Aimchat\AFCTokenBundle\TokenServiceInterface
 	 */
 	abstract protected function getTokenService() :TokenServiceInterface;
 
 
 	/**
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
-	 * @return \AFCTokenBundle\TokenInterface
-	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
+	 * @throws \Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	protected function createToken(Request $Request) :TokenInterface{
 		$TokenRequest = new TokenRequest(
@@ -49,9 +49,9 @@ abstract class TokenController extends Controller
 
 	/**
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
-	 * @return \AFCTokenBundle\TokenInterface|null
-	 * @throws \AFCTokenBundle\Controller\Exception\NoTokenException
-	 * @throws \AFCTokenBundle\Exception\DeserializationFailException
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface|null
+	 * @throws \Aimchat\AFCTokenBundle\Controller\Exception\NoTokenException
+	 * @throws \Aimchat\AFCTokenBundle\Exception\DeserializationFailException
 	 */
 	protected function extractToken(Request $Request) :TokenInterface{
 
@@ -66,11 +66,11 @@ abstract class TokenController extends Controller
 	/**
 	 * @param string                                    $refresh
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
-	 * @return \AFCTokenBundle\TokenInterface|null
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface|null
 	 *
-	 * @throws \AFCTokenBundle\Controller\Exception\UnauthorizedException
-	 * @throws \AFCTokenBundle\Exception\RefreshTokenInvalidException
-	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @throws \Aimchat\AFCTokenBundle\Controller\Exception\UnauthorizedException
+	 * @throws \Aimchat\AFCTokenBundle\Exception\RefreshTokenInvalidException
+	 * @throws \Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	public function refreshToken(string $refresh, Request $Request) :TokenInterface{
 

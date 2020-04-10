@@ -1,19 +1,19 @@
 <?php
 
-namespace AFCTokenBundle\Controller;
+namespace Aimchat\AFCTokenBundle\Controller;
 
+use Aimchat\AFCTokenBundle\Controller\Exception\NoTokenException;
+use Aimchat\AFCTokenBundle\Controller\Exception\UnauthorizedException;
+use Aimchat\AFCTokenBundle\Exception\AuthorizationFailedException;
+use Aimchat\AFCTokenBundle\Exception\DeserializationFailException;
+use Aimchat\AFCTokenBundle\Exception\ExpiredTokenException;
+use Aimchat\AFCTokenBundle\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
-use AFCTokenBundle\Controller\Exception\NoTokenException;
-use AFCTokenBundle\Controller\Exception\UnauthorizedException;
-use AFCTokenBundle\Exception\AuthorizationFailedException;
-use AFCTokenBundle\Exception\DeserializationFailException;
-use AFCTokenBundle\Exception\ExpiredTokenException;
-use AFCTokenBundle\TokenInterface;
 
 /**
  * Class TokenWebController
  *
- * @package AFCTokenBundle\Controller
+ * @package Aimchat\AFCTokenBundle\Controller
  */
 abstract class TokenWebController extends TokenController
 {
@@ -21,8 +21,8 @@ abstract class TokenWebController extends TokenController
 	 * Return authorized token
 	 *
 	 * @param \Symfony\Component\HttpFoundation\Request $Request
-	 * @return \AFCTokenBundle\TokenInterface
-	 * @throws \AFCTokenBundle\Controller\Exception\UnauthorizedException
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
+	 * @throws \Aimchat\AFCTokenBundle\Controller\Exception\UnauthorizedException
 	 */
 	public function authorizeRequest(Request $Request) :TokenInterface{
 

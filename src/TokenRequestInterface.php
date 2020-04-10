@@ -1,6 +1,6 @@
 <?php
 
-namespace AFCTokenBundle;
+namespace Aimchat\AFCTokenBundle;
 
 /**
  * Interface TokenRequestInterface

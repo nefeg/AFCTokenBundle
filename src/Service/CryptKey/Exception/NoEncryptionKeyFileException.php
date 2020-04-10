@@ -1,8 +1,8 @@
 <?php
 
-namespace AFCTokenBundle\Service\CryptKey\Exception;
+namespace Aimchat\AFCTokenBundle\Service\CryptKey\Exception;
 
-use AFCTokenBundle\Exception\AFCTokenException;
+use Aimchat\AFCTokenBundle\Exception\AFCTokenException;
 
 /**
  * Class NoEncryptionKeyFileException

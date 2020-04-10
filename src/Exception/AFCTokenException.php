@@ -1,11 +1,11 @@
 <?php
 
-namespace AFCTokenBundle\Exception;
+namespace Aimchat\AFCTokenBundle\Exception;
 
 /**
  * Class AFCTokenException
  *
- * @package AFCTokenBundle
+ * @package Aimchat\AFCTokenBundle
  */
 abstract class AFCTokenException extends \Exception
 {

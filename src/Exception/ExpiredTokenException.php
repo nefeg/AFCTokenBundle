@@ -1,6 +1,6 @@
 <?php
 
-namespace AFCTokenBundle\Exception;
+namespace Aimchat\AFCTokenBundle\Exception;
 
 /**
  * Class TokenExpiredException

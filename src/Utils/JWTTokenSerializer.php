@@ -1,30 +1,30 @@
 <?php
 
-namespace AFCTokenBundle\Utils;
+namespace Aimchat\AFCTokenBundle\Utils;
 
+use Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException;
+use Aimchat\AFCTokenBundle\Entity\RefreshTokenHash;
+use Aimchat\AFCTokenBundle\Entity\Token;
+use Aimchat\AFCTokenBundle\Exception\DeserializationFailException;
+use Aimchat\AFCTokenBundle\TokenInterface;
+use Aimchat\JCLibPack\JCDateTime;
+use Aimchat\JCLibPack\JCEncrypter;
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\SignatureInvalidException;
-use AFCTokenBundle\Exception\TokenConstructorFailException;
-use AFCTokenBundle\Entity\RefreshTokenHash;
-use AFCTokenBundle\Entity\Token;
-use AFCTokenBundle\Exception\DeserializationFailException;
-use AFCTokenBundle\TokenInterface;
-use JCLibPack\JCDateTime;
-use JCLibPack\JCEncrypter;
 use UnexpectedValueException;
 
 /**
  * Class JWTTokenSerializer
  *
- * @package AFCTokenBundle\Service
+ * @package Aimchat\AFCTokenBundle\Service
  */
 class JWTTokenSerializer
 {
 	private const TYPE = 'HS512';
 
 	/**
-	 * @param \AFCTokenBundle\TokenInterface $Token
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface $Token
 	 * @param string|NULL                             $privateKey
 	 * @return array
 	 */
@@ -41,7 +41,7 @@ class JWTTokenSerializer
 
 	/**
 	 * !Key must be in .pem format
-	 * @param \AFCTokenBundle\TokenInterface $Token
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface $Token
 	 * @param string                             $secret
 	 * @param string                             $privateKey
 	 * @return string
@@ -59,9 +59,9 @@ class JWTTokenSerializer
 	 * @param string $tokenString
 	 * @param string $secret
 	 * @param string $publicKey
-	 * @return \AFCTokenBundle\TokenInterface
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
 	 *
-	 * @throws \AFCTokenBundle\Exception\DeserializationFailException
+	 * @throws \Aimchat\AFCTokenBundle\Exception\DeserializationFailException
 	 */
 	static public function deserialize(string $tokenString, string $secret, string $publicKey): TokenInterface
 	{

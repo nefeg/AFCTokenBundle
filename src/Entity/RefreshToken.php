@@ -1,9 +1,9 @@
 <?php
 
-namespace AFCTokenBundle\Entity;
+namespace Aimchat\AFCTokenBundle\Entity;
 
-use AFCTokenBundle\RefreshTokenInterface;
-use AFCTokenBundle\TokenInterface;
+use Aimchat\AFCTokenBundle\RefreshTokenInterface;
+use Aimchat\AFCTokenBundle\TokenInterface;
 
 class RefreshToken implements RefreshTokenInterface
 {
@@ -23,7 +23,7 @@ class RefreshToken implements RefreshTokenInterface
 	}
 
 	/**
-	 * @param \AFCTokenBundle\TokenInterface $Token
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface $Token
 	 * @return string
 	 */
 	public function generateHash(TokenInterface $Token): string {

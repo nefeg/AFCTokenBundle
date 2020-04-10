@@ -1,15 +1,15 @@
 <?php
 
-namespace AFCTokenBundle\Service;
+namespace Aimchat\AFCTokenBundle\Service;
 
-use AFCTokenBundle\TokenDeserializerInterface;
-use AFCTokenBundle\TokenInterface;
-use AFCTokenBundle\Utils\JWTTokenSerializer;
+use Aimchat\AFCTokenBundle\TokenDeserializerInterface;
+use Aimchat\AFCTokenBundle\TokenInterface;
+use Aimchat\AFCTokenBundle\Utils\JWTTokenSerializer;
 
 /**
  * Class TokenDeserializerService
  *
- * @package AFCTokenBundle\Service
+ * @package Aimchat\AFCTokenBundle\Service
  */
 class TokenDeserializerService implements TokenDeserializerInterface
 {
@@ -26,7 +26,7 @@ class TokenDeserializerService implements TokenDeserializerInterface
 	 * TokenDeserializerService constructor.
 	 *
 	 * @param string                                             $secret
-	 * @param \AFCTokenBundle\Service\CryptKeyInterface $publicKey
+	 * @param \Aimchat\AFCTokenBundle\Service\CryptKeyInterface $publicKey
 	 */
 	public function __construct(string $secret, CryptKeyInterface $publicKey){
 
@@ -36,8 +36,8 @@ class TokenDeserializerService implements TokenDeserializerInterface
 
 	/**
 	 * @param string $tokenString
-	 * @return \AFCTokenBundle\TokenInterface
-	 * @throws \AFCTokenBundle\Exception\DeserializationFailException
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
+	 * @throws \Aimchat\AFCTokenBundle\Exception\DeserializationFailException
 	 */
 	public function deserialize(string $tokenString): TokenInterface {
 		return JWTTokenSerializer::deserialize($tokenString, $this->secret, $this->publicKey);

@@ -1,11 +1,11 @@
 <?php
 
-namespace AFCTokenBundle\Exception;
+namespace Aimchat\AFCTokenBundle\Exception;
 
 /**
  * Class InvalidRefreshTokenException
  *
- * @package AFCTokenBundle\Utils\Exception
+ * @package Aimchat\AFCTokenBundle\Utils\Exception
  */
 class RefreshTokenInvalidException extends AFCTokenException
 {

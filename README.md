@@ -23,9 +23,9 @@ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 
 ```
 	parameters:
-	    umbrella.afct.param.secret: "%env(AFCT_SECRET)%"
-	    umbrella.afct.param.public_file: "%env(AFCT_PUBLIC_PATH)%"
-	    umbrella.afct.param.private_file: "%env(AFCT_PRIVATE_PATH)%"
+	    aimchat.afct.param.secret: "%env(AFCT_SECRET)%"
+	    aimchat.afct.param.public_file: "%env(AFCT_PUBLIC_PATH)%"
+	    aimchat.afct.param.private_file: "%env(AFCT_PRIVATE_PATH)%"
 	
 	
 	services:
@@ -35,31 +35,31 @@ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 	        public: true         # this makes public all the services defined in this file
 	
 	
-	    umbrella.afct.service:
-	        class: Umbrella\AFCTokenBundle\Service\TokenService
+	    aimchat.afct.service:
+	        class: Aimchat\AFCTokenBundle\Service\TokenService
 	        arguments: []
 	
 	
 	
 	
-	    umbrella.afct.key_public.file:
-	        class: Umbrella\AFCTokenBundle\Service\CryptKey\FileKey
-	        arguments: ["%umbrella.afct.param.public_file%"]
+	    aimchat.afct.key_public.file:
+	        class: Aimchat\AFCTokenBundle\Service\CryptKey\FileKey
+	        arguments: ["%aimchat.afct.param.public_file%"]
 	
-	    umbrella.afct.key_private.file:
-	        class: Umbrella\AFCTokenBundle\Service\CryptKey\FileKey
-	        arguments: ["%umbrella.afct.param.private_file%"]
-	
-	
+	    aimchat.afct.key_private.file:
+	        class: Aimchat\AFCTokenBundle\Service\CryptKey\FileKey
+	        arguments: ["%aimchat.afct.param.private_file%"]
 	
 	
-	    umbrella.afct.serializer:
-	        class: Umbrella\AFCTokenBundle\Service\TokenSerializerService
-	        arguments: ["%umbrella.afct.param.secret%", "@umbrella.afct.key_private.file"]
 	
-	    umbrella.afct.deserializer:
-	        class: Umbrella\AFCTokenBundle\Service\TokenDeserializerService
-	        arguments: ["%umbrella.afct.param.secret%", "@umbrella.afct.key_public.file"]
+	
+	    aimchat.afct.serializer:
+	        class: Aimchat\AFCTokenBundle\Service\TokenSerializerService
+	        arguments: ["%aimchat.afct.param.secret%", "@aimchat.afct.key_private.file"]
+	
+	    aimchat.afct.deserializer:
+	        class: Aimchat\AFCTokenBundle\Service\TokenDeserializerService
+	        arguments: ["%aimchat.afct.param.secret%", "@aimchat.afct.key_public.file"]
 ```
 
 
@@ -83,17 +83,17 @@ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 	class MyController extends TokenController
 	{
 		/**
-		 * @return \AFCTokenBundle\TokenDeserializerInterface
+		 * @return \Aimchat\AFCTokenBundle\TokenDeserializerInterface
 		 */
 		protected function getDeserializer(): TokenDeserializerInterface {
-			return $this->get('umbrella.afct.deserializer');
+			return $this->get('aimchat.afct.deserializer');
 		}
 	
 		/**
-		 * @return \AFCTokenBundle\TokenServiceInterface
+		 * @return \Aimchat\AFCTokenBundle\TokenServiceInterface
 		 */
 		protected function getTokenService(): TokenServiceInterface {
-			return $this->get('umbrella.afct.service');
+			return $this->get('aimchat.afct.service');
 		}
 		
 		....

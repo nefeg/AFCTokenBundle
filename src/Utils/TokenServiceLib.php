@@ -1,22 +1,22 @@
 <?php
 
-namespace AFCTokenBundle\Utils;
+namespace Aimchat\AFCTokenBundle\Utils;
 
-use AFCTokenBundle\Entity\RefreshTokenCode;
-use AFCTokenBundle\Entity\Token;
-use AFCTokenBundle\Entity\TokenRequest;
-use AFCTokenBundle\Exception\ExpiredTokenException;
-use AFCTokenBundle\RefreshTokenInterface;
-use AFCTokenBundle\TokenInterface;
-use AFCTokenBundle\TokenRequestInterface;
-use AFCTokenBundle\Exception\RefreshTokenInvalidException;
+use Aimchat\AFCTokenBundle\Entity\RefreshTokenCode;
+use Aimchat\AFCTokenBundle\Entity\Token;
+use Aimchat\AFCTokenBundle\Entity\TokenRequest;
+use Aimchat\AFCTokenBundle\Exception\ExpiredTokenException;
+use Aimchat\AFCTokenBundle\RefreshTokenInterface;
+use Aimchat\AFCTokenBundle\TokenInterface;
+use Aimchat\AFCTokenBundle\TokenRequestInterface;
+use Aimchat\AFCTokenBundle\Exception\RefreshTokenInvalidException;
 
 class TokenServiceLib
 {
 	/**
-	 * @param \AFCTokenBundle\TokenRequestInterface $TokenRequest
-	 * @return \AFCTokenBundle\TokenInterface
-	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @param \Aimchat\AFCTokenBundle\TokenRequestInterface $TokenRequest
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
+	 * @throws \Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	static public function create(TokenRequestInterface $TokenRequest): TokenInterface {
 
@@ -28,9 +28,9 @@ class TokenServiceLib
 	}
 
 	/**
-	 * @param \AFCTokenBundle\TokenInterface $Token
-	 * @return \AFCTokenBundle\TokenInterface
-	 * @throws \AFCTokenBundle\Exception\ExpiredTokenException
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface $Token
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
+	 * @throws \Aimchat\AFCTokenBundle\Exception\ExpiredTokenException
 	 */
 	static public function authorize(TokenInterface $Token): TokenInterface {
 
@@ -47,12 +47,12 @@ class TokenServiceLib
 	 *
 	 * $rhash = hash($RefreshToken + resource + at)
 	 *
-	 * @param \AFCTokenBundle\TokenInterface        $Token
-	 * @param \AFCTokenBundle\RefreshTokenInterface $RefreshToken
-	 * @return \AFCTokenBundle\TokenInterface
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface        $Token
+	 * @param \Aimchat\AFCTokenBundle\RefreshTokenInterface $RefreshToken
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
 	 *
-	 * @throws \AFCTokenBundle\Exception\RefreshTokenInvalidException
-	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @throws \Aimchat\AFCTokenBundle\Exception\RefreshTokenInvalidException
+	 * @throws \Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	static public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface{
 

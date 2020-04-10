@@ -1,6 +1,6 @@
 <?php
 
-namespace AFCTokenBundle;
+namespace Aimchat\AFCTokenBundle;
 
 /**
  * Interface RefreshTokenInterface
@@ -10,7 +10,7 @@ namespace AFCTokenBundle;
 interface RefreshTokenInterface
 {
 	/**
-	 * @param \AFCTokenBundle\TokenInterface $Token
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface $Token
 	 * @return string
 	 */
 	public function generateHash(TokenInterface $Token) :string;

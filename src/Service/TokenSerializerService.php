@@ -1,15 +1,15 @@
 <?php
 
-namespace AFCTokenBundle\Service;
+namespace Aimchat\AFCTokenBundle\Service;
 
-use AFCTokenBundle\TokenInterface;
-use AFCTokenBundle\TokenSerializerInterface;
-use AFCTokenBundle\Utils\JWTTokenSerializer;
+use Aimchat\AFCTokenBundle\TokenInterface;
+use Aimchat\AFCTokenBundle\TokenSerializerInterface;
+use Aimchat\AFCTokenBundle\Utils\JWTTokenSerializer;
 
 /**
  * Class TokenSerializerService
  *
- * @package AFCTokenBundle\Service
+ * @package Aimchat\AFCTokenBundle\Service
  */
 class TokenSerializerService implements TokenSerializerInterface
 {
@@ -26,7 +26,7 @@ class TokenSerializerService implements TokenSerializerInterface
 	 * TokenSerializerService constructor.
 	 *
 	 * @param string                                             $secret
-	 * @param \AFCTokenBundle\Service\CryptKeyInterface $privateKey
+	 * @param \Aimchat\AFCTokenBundle\Service\CryptKeyInterface $privateKey
 	 */
 	public function __construct(string $secret, CryptKeyInterface $privateKey){
 
@@ -36,7 +36,7 @@ class TokenSerializerService implements TokenSerializerInterface
 
 
 	/**
-	 * @param \AFCTokenBundle\TokenInterface $Token
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface $Token
 	 * @return string
 	 */
 	public function serialize(TokenInterface $Token): string {

@@ -1,13 +1,13 @@
 <?php
 
-namespace AFCTokenBundle\Entity;
+namespace Aimchat\AFCTokenBundle\Entity;
 
-use AFCTokenBundle\Exception\TokenImmutableDataException;
-use AFCTokenBundle\Exception\TokenConstructorFailException;
-use AFCTokenBundle\RefreshTokenInterface;
-use AFCTokenBundle\TokenInterface;
-use JCLibPack\JCDateTime;
-use JCLibPack\JCHelper;
+use Aimchat\AFCTokenBundle\Exception\TokenImmutableDataException;
+use Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException;
+use Aimchat\AFCTokenBundle\RefreshTokenInterface;
+use Aimchat\AFCTokenBundle\TokenInterface;
+use Aimchat\JCLibPack\JCDateTime;
+use Aimchat\JCLibPack\JCHelper;
 
 /**
  * Class Token
@@ -33,7 +33,7 @@ class Token implements TokenInterface
 	 */
 	private $ttl;
 	/**
-	 * @var \JCLibPack\JCDateTime
+	 * @var \Aimchat\JCLibPack\JCDateTime
 	 */
 	private $at;
 	/**
@@ -41,7 +41,7 @@ class Token implements TokenInterface
 	 */
 	private $salt;
 	/**
-	 * @var \AFCTokenBundle\RefreshTokenInterface|null
+	 * @var \Aimchat\AFCTokenBundle\RefreshTokenInterface|null
 	 */
 	private $RefreshToken;
 	/**
@@ -55,8 +55,8 @@ class Token implements TokenInterface
 	 *
 	 * @param string                                              $resource
 	 * @param int                                                 $ttl
-	 * @param \AFCTokenBundle\RefreshTokenInterface|null $RefreshToken
-	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @param \Aimchat\AFCTokenBundle\RefreshTokenInterface|null $RefreshToken
+	 * @throws \Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	public function __construct(string $resource, int $ttl, RefreshTokenInterface $RefreshToken = null){
 		$this->resource     = $resource;
@@ -76,8 +76,8 @@ class Token implements TokenInterface
 	/**
 	 * @param $methodName
 	 * @param $args
-	 * @return \AFCTokenBundle\Entity\Token
-	 * @throws \AFCTokenBundle\Exception\TokenImmutableDataException
+	 * @return \Aimchat\AFCTokenBundle\Entity\Token
+	 * @throws \Aimchat\AFCTokenBundle\Exception\TokenImmutableDataException
 	 */
 	public function __call($methodName, $args) :Token{
 
@@ -98,7 +98,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @return \AFCTokenBundle\TokenInterface
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
 	 */
 	public function authorize() :TokenInterface{
 		$this->isAuthorized = true;
@@ -113,7 +113,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @param \AFCTokenBundle\RefreshTokenInterface $RefreshToken
+	 * @param \Aimchat\AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return bool
 	 */
 	public function isValidRefreshToken(RefreshTokenInterface $RefreshToken): bool {
@@ -144,7 +144,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @return \JCLibPack\JCDateTime
+	 * @return \Aimchat\JCLibPack\JCDateTime
 	 */
 	public function getAt(): JCDateTime {
 		return $this->at;
@@ -178,7 +178,7 @@ class Token implements TokenInterface
 	}
 
 	/**
-	 * @param \JCLibPack\JCDateTime $at
+	 * @param \Aimchat\JCLibPack\JCDateTime $at
 	 * @return Token
 	 */
 	private function _setAt(JCDateTime $at) :Token {

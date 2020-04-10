@@ -1,13 +1,13 @@
 <?php
 
-namespace AFCTokenBundle;
+namespace Aimchat\AFCTokenBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class AFCTokenBundle
  *
- * @package AFCTokenBundle
+ * @package Aimchat\AFCTokenBundle
  */
 class AFCTokenBundle extends Bundle
 {

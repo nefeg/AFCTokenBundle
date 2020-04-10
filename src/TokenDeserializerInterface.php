@@ -1,18 +1,18 @@
 <?php
 
-namespace AFCTokenBundle;
+namespace Aimchat\AFCTokenBundle;
 
-use AFCTokenBundle\Exception\DeserializationFailException;
+use Aimchat\AFCTokenBundle\Exception\DeserializationFailException;
 
 /**
  * Interface TokenDeserializerInterface
  *
- * @package AFCTokenBundle
+ * @package Aimchat\AFCTokenBundle
  */
 interface TokenDeserializerInterface{
 	/**
 	 * @param string $tokenString
-	 * @return \AFCTokenBundle\TokenInterface
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
 	 *
 	 * @throws DeserializationFailException
 	 */

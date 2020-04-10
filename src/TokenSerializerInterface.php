@@ -1,16 +1,16 @@
 <?php
 
-namespace AFCTokenBundle;
+namespace Aimchat\AFCTokenBundle;
 
 /**
  * Interface TokenSerializerInterface
  *
- * @package AFCTokenBundle
+ * @package Aimchat\AFCTokenBundle
  */
 interface TokenSerializerInterface
 {
 	/**
-	 * @param \AFCTokenBundle\TokenInterface $Token
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface $Token
 	 * @return string
 	 */
 	public function serialize(TokenInterface $Token): string;

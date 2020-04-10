@@ -1,6 +1,6 @@
 <?php
 
-namespace AFCTokenBundle\Utils;
+namespace Aimchat\AFCTokenBundle\Utils;
 
 use DomainException;
 use Firebase\JWT\BeforeValidException;
@@ -12,7 +12,7 @@ use \UnexpectedValueException;
 /**
  * Class JWT
  *
- * @package AFCTokenBundle\Utils
+ * @package Aimchat\AFCTokenBundle\Utils
  */
 class JWT extends \Firebase\JWT\JWT
 {

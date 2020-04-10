@@ -1,6 +1,6 @@
 <?php
 
-namespace AFCTokenBundle\Controller\Exception;
+namespace Aimchat\AFCTokenBundle\Controller\Exception;
 
 /**
  * Class NoTokenException

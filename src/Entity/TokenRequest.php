@@ -1,8 +1,8 @@
 <?php
 
-namespace AFCTokenBundle\Entity;
+namespace Aimchat\AFCTokenBundle\Entity;
 
-use AFCTokenBundle\TokenRequestInterface;
+use Aimchat\AFCTokenBundle\TokenRequestInterface;
 
 /**
  * Class TokenRequest

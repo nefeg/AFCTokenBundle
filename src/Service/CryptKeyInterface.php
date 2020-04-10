@@ -1,8 +1,8 @@
 <?php
 
-namespace AFCTokenBundle\Service;
+namespace Aimchat\AFCTokenBundle\Service;
 
-use JCLibPack\JCStringInterface;
+use Aimchat\JCLibPack\JCStringInterface;
 
 interface CryptKeyInterface extends JCStringInterface
 {

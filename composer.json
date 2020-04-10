@@ -35,7 +35,7 @@
   },
   "autoload": {
     "psr-4": {
-      "AFCTokenBundle\\": "src/"
+      "Aimchat\\AFCTokenBundle\\": "src/"
     }
   },
   "scripts": {

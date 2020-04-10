@@ -1,23 +1,23 @@
 <?php
 
-namespace AFCTokenBundle;
+namespace Aimchat\AFCTokenBundle;
 
-use JCLibPack\JCDateTime;
+use Aimchat\JCLibPack\JCDateTime;
 
 /**
  * Interface TokenInterface
  *
- * @package AFCTokenBundle
+ * @package Aimchat\AFCTokenBundle
  *
- * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
- * @throws \AFCTokenBundle\Exception\TokenImmutableDataException
+ * @throws \Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException
+ * @throws \Aimchat\AFCTokenBundle\Exception\TokenImmutableDataException
  */
 interface TokenInterface
 {
 	/**
 	 * Mark token as authorized.
 	 *
-	 * @return \AFCTokenBundle\TokenInterface
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
 	 */
 	public function authorize() :TokenInterface;
 	/**
@@ -31,7 +31,7 @@ interface TokenInterface
 	public function isExpired() :bool;
 
 	/**
-	 * @param \AFCTokenBundle\RefreshTokenInterface $RefreshToken
+	 * @param \Aimchat\AFCTokenBundle\RefreshTokenInterface $RefreshToken
 	 * @return bool
 	 */
 	public function isValidRefreshToken(RefreshTokenInterface $RefreshToken) :bool;
@@ -52,7 +52,7 @@ interface TokenInterface
 	public function getTtl(): int;
 
 	/**
-	 * @return \JCLibPack\JCDateTime
+	 * @return \Aimchat\JCLibPack\JCDateTime
 	 */
 	public function getAt(): JCDateTime;
 

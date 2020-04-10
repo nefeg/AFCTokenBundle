@@ -1,6 +1,6 @@
 <?php
 
-namespace AFCTokenBundle;
+namespace Aimchat\AFCTokenBundle;
 
 /**
  * Interface TokenServiceInterface
@@ -10,17 +10,17 @@ namespace AFCTokenBundle;
 interface TokenServiceInterface
 {
 	/**
-	 * @param \AFCTokenBundle\TokenRequestInterface $TokenRequest
-	 * @return \AFCTokenBundle\TokenInterface
-	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @param \Aimchat\AFCTokenBundle\TokenRequestInterface $TokenRequest
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
+	 * @throws \Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException
 	 */
 	public function create(TokenRequestInterface $TokenRequest): TokenInterface;
 
 	/**
-	 * @param \AFCTokenBundle\TokenInterface $Token
-	 * @return \AFCTokenBundle\TokenInterface
-	 * @throws \AFCTokenBundle\Exception\AuthorizationFailedException
-	 * @throws \AFCTokenBundle\Exception\ExpiredTokenException
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface $Token
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
+	 * @throws \Aimchat\AFCTokenBundle\Exception\AuthorizationFailedException
+	 * @throws \Aimchat\AFCTokenBundle\Exception\ExpiredTokenException
 	 */
 	public function authorize(TokenInterface $Token): TokenInterface;
 
@@ -29,11 +29,11 @@ interface TokenServiceInterface
 	 *
 	 * $rhash = hash($RefreshToken + resource + at)
 	 *
-	 * @param \AFCTokenBundle\TokenInterface        $Token
-	 * @param \AFCTokenBundle\RefreshTokenInterface $RefreshToken
-	 * @return \AFCTokenBundle\TokenInterface
-	 * @throws \AFCTokenBundle\Exception\TokenConstructorFailException
-	 * @throws \AFCTokenBundle\Exception\RefreshTokenInvalidException
+	 * @param \Aimchat\AFCTokenBundle\TokenInterface        $Token
+	 * @param \Aimchat\AFCTokenBundle\RefreshTokenInterface $RefreshToken
+	 * @return \Aimchat\AFCTokenBundle\TokenInterface
+	 * @throws \Aimchat\AFCTokenBundle\Exception\TokenConstructorFailException
+	 * @throws \Aimchat\AFCTokenBundle\Exception\RefreshTokenInvalidException
 	 */
 	public function refresh(TokenInterface $Token, RefreshTokenInterface $RefreshToken) :TokenInterface;
 }

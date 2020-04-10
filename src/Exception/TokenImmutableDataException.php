@@ -1,11 +1,11 @@
 <?php
 
-namespace AFCTokenBundle\Exception;
+namespace Aimchat\AFCTokenBundle\Exception;
 
 /**
  * Class ImmutableTokenDataException
  *
- * @package AFCTokenBundle\Entity\Exception
+ * @package Aimchat\AFCTokenBundle\Entity\Exception
  */
 class TokenImmutableDataException extends AFCTokenException
 {
