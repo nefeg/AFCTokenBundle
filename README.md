@@ -10,12 +10,12 @@ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 
 ##Install
 
-1. **Add to composer**: `composer require umbrella-evgeny-nefedkin/afc-tokens`
+1. **Add to composer**: `composer require path-to-repo/afc-tokens`
 
 2. **Import**
  
  ```imports:
-      - { resource: '{path-to-vendor}/vendor/umbrella-evgeny-nefedkin/afc-tokens/src/Resources/config/services.yml' }
+      - { resource: '{path-to-vendor}/vendor/path-to-repo/afc-tokens/src/Resources/config/services.yml' }
   ```
  
  

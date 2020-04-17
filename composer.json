@@ -1,20 +1,15 @@
 {
-  "name": "umbrella-evgeny-nefedkin/afc-tokens",
+  "name": "path-to-repo/afc-tokens",
   "description": "Token service",
   "keywords": ["token", "security"],
   "type": "symfony-bundle",
   "license": "MIT",
   "version": "1.1.2-RC1",
-  "authors": [
-    { "name": "Evgeny Nefedkin",
-      "email": "evgeny.nefedkin@umbrellait.com"
-    }
-  ],
 
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/umbrella-evgeny-nefedkin/AFCTokenBundle.git"
+      "url": "set path to repo git here"
     }
   ],
 
@@ -31,7 +26,7 @@
     "symfony/orm-pack": "^1.0",
     "symfony/proxy-manager-bridge": "^4.0",
     "symfony/yaml": "^4.0",
-    "umbrella-evgeny-nefedkin/libjc": "dev-feature/497"
+    "path-to-repo/libjc": "dev-master"
   },
   "autoload": {
     "psr-4": {
